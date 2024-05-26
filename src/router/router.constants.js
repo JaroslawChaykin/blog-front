@@ -3,5 +3,5 @@ export const RouterPath = {
   LOGIN: "/sign-in",
   REGISTRATION: "/sign-up",
   ADD_POST: "/add-post",
-  FULL_POST: "/post/:id",
+  FULL_POST: "/posts/:id",
 }
