@@ -18,14 +18,6 @@ const routerList = createBrowserRouter([
         element: LazyPage(lazy(() => import("../pages/Home/Home.jsx"))),
       },
       {
-        path: RouterPath.LOGIN,
-        element: LazyPage(lazy(() => import("../pages/Auth/Login/Login.jsx"))),
-      },
-      {
-        path: RouterPath.REGISTRATION,
-        element: LazyPage(lazy(() => import("../pages/Auth/Registration/Registration.jsx"))),
-      },
-      {
         path: RouterPath.ADD_POST,
         element: LazyPage(lazy(() => import("../pages/Post/AddPost/AddPost.jsx"))),
       },
@@ -34,6 +26,14 @@ const routerList = createBrowserRouter([
         element: LazyPage(lazy(() => import("../pages/Post/FullPost/FullPost.jsx"))),
       },
     ],
+  },
+  {
+    path: RouterPath.LOGIN,
+    element: LazyPage(lazy(() => import("../pages/Auth/Login/Login.jsx"))),
+  },
+  {
+    path: RouterPath.REGISTRATION,
+    element: LazyPage(lazy(() => import("../pages/Auth/Registration/Registration.jsx"))),
   },
 ])
 

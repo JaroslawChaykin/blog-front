@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { fetchPosts, postsSlice } from "../../store/slices/posts.js"
+import { fetchPosts } from "../../store/slices/Posts/fetchPost.js"
 
 const Home = () => {
   const dispatch = useDispatch()
-  const { posts, tags } = useSelector(state => state.posts)
+  const { posts } = useSelector(state => state.posts)
 
   useEffect(() => {
     dispatch(fetchPosts())
