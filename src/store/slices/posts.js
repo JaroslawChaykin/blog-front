@@ -21,15 +21,15 @@ export const postsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchPosts.pending, (state, payload) => {
+    builder.addCase(fetchPosts.pending, (state) => {
       state.posts.data = []
       state.posts.status = "loading"
     })
-    builder.addCase(fetchPosts.fulfilled, (state, action, payload) => {
+    builder.addCase(fetchPosts.fulfilled, (state, action) => {
       state.posts.data = action.payload
       state.posts.status = "loaded"
     })
-    builder.addCase(fetchPosts.rejected, (state, payload) => {
+    builder.addCase(fetchPosts.rejected, (state) => {
       state.posts.data = []
       state.posts.status = "error"
     })
