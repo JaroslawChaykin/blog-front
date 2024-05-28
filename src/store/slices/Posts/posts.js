@@ -6,10 +6,6 @@ const initialState = {
     data: [],
     status: "loading",
   },
-  tags: {
-    data: [],
-    status: "loading",
-  },
 }
 
 export const postsSlice = createSlice({
