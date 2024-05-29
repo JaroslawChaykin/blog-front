@@ -1,7 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { RouterPath } from "./router.constants.js"
-import { lazy, Suspense } from "react"
+import { lazy, Suspense, useEffect } from "react"
 import BasicLayout from "../layouts/BasicLayout.jsx"
+import { useDispatch } from "react-redux"
+import { fetchAuthMe } from "../store/slices/Auth/fetchAuthMe.js"
+import AuthLayout from "../layouts/AuthLayout.jsx"
 
 const LazyPage = (Page) => (
   <Suspense fallback={<div>loading...</div>}>
@@ -28,16 +31,27 @@ const routerList = createBrowserRouter([
     ],
   },
   {
-    path: RouterPath.LOGIN,
-    element: LazyPage(lazy(() => import("../pages/Auth/Login/Login.jsx"))),
-  },
-  {
-    path: RouterPath.REGISTRATION,
-    element: LazyPage(lazy(() => import("../pages/Auth/Registration/Registration.jsx"))),
+    element: <AuthLayout />,
+    children: [
+      {
+        path: RouterPath.LOGIN,
+        element: LazyPage(lazy(() => import("../pages/Auth/Login/Login.jsx"))),
+      },
+      {
+        path: RouterPath.REGISTRATION,
+        element: LazyPage(lazy(() => import("../pages/Auth/Registration/Registration.jsx"))),
+      },
+    ],
   },
 ])
 
 const AppRouter = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchAuthMe())
+  }, [])
+
   return <RouterProvider router={routerList} />
 }
 
