@@ -18,6 +18,7 @@ const Login = () => {
     defaultValues: {
       email: "mail1@mail.ru",
       password: "123242321",
+      shouldRemember: false,
     },
     mode: "onChange",
   })
@@ -29,8 +30,6 @@ const Login = () => {
   if (isAuth) {
     return <Navigate to="/" />
   }
-
-  console.log(isAuth)
 
   return (
     <div>
@@ -50,6 +49,13 @@ const Login = () => {
             {...register("password", { required: "Укажите пароль" })}
           />
           <span>{errors.password?.message}</span>
+          <label>
+            <input
+              type="checkbox"
+              {...register("shouldRemember")}
+            />
+            Запомнить меня
+          </label>
 
           <button type="submit">Login</button>
         </div>
