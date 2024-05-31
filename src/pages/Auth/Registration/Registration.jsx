@@ -51,7 +51,7 @@ const Registration = () => {
           <input
             type="firstName"
             placeholder="firstName"
-            {...register("firstName", { required: "Укажите пароль" })}
+            {...register("firstName", { required: "Укажите имя" })}
           />
           <span>{errors.firstName?.message}</span>
 
