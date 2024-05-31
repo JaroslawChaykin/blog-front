@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { fetchAuthBuilder } from "./fetchAuth"
 import { fetchAuthMeBuilder } from "./fetchAuthMe.js"
+import { fetchRegistrationBuilder } from "./fetchRegistration.js"
 
 const initialState = {
   user: null,
@@ -19,6 +20,7 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     fetchAuthBuilder(builder)
     fetchAuthMeBuilder(builder)
+    fetchRegistrationBuilder(builder)
   },
 })
 export const isAuthSelector = (state) => Boolean(state.auth.user)

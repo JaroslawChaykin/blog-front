@@ -11,4 +11,9 @@ export const AuthAPI = {
 
     return data
   },
+  registration: async (params) => {
+    const { data } = await axios.post("/auth/register", params)
+
+    return data
+  },
 }
