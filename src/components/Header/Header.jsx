@@ -14,6 +14,7 @@ const Header = () => {
   return (
     <header>
       <Link to={RouterPath.HOME}> Home </Link> |
+      <Link to={RouterPath.ADD_POST}> Add post </Link> |
       {
         isAuth ?
           <span>

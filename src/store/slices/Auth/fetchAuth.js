@@ -17,6 +17,10 @@ export const fetchAuthBuilder = (builder) => {
     state.user = action.payload.data
     state.status = "loaded"
 
+    if (!action.payload.shouldRemember) {
+      sessionStorage.setItem("token", action.payload.data.token)
+    }
+
     if (action.payload.data.token && action.payload.shouldRemember) {
       localStorage.setItem("token", action.payload.data.token)
     }

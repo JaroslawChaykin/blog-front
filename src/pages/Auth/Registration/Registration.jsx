@@ -1,12 +1,9 @@
 import { useForm } from "react-hook-form"
-import { Navigate } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
-import { isAuthSelector } from "../../../store/slices/Auth/auth.js"
+import { useDispatch } from "react-redux"
 import { fetchRegistration } from "../../../store/slices/Auth/fetchRegistration.js"
 
 const Registration = () => {
   const dispatch = useDispatch()
-  const isAuth = useSelector(isAuthSelector)
 
   const {
     register,
@@ -25,10 +22,6 @@ const Registration = () => {
 
   const onSubmit = (values) => {
     dispatch(fetchRegistration(values))
-  }
-  console.log(isAuth, "")
-  if (isAuth) {
-    return <Navigate to="/" />
   }
 
   return (

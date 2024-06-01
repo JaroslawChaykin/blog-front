@@ -1,12 +1,13 @@
-import { Navigate, Outlet } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { isAuthSelector } from "../store/slices/Auth/auth.js"
 
 const AuthLayout = () => {
   const isAuth = useSelector(isAuthSelector)
+  const navigate = useNavigate()
 
   if (isAuth) {
-    return <Navigate to="/" />
+    navigate(-1)
   }
 
   return (

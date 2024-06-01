@@ -1,12 +1,9 @@
 import { useForm } from "react-hook-form"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { fetchAuth } from "../../../store/slices/Auth/fetchAuth"
-import { isAuthSelector } from "../../../store/slices/Auth/auth.js"
-import { Navigate } from "react-router-dom"
 
 const Login = () => {
   const dispatch = useDispatch()
-  const isAuth = useSelector(isAuthSelector)
 
   const {
     register,
@@ -27,13 +24,9 @@ const Login = () => {
     dispatch(fetchAuth(values))
   }
 
-  if (isAuth) {
-    return <Navigate to="/" />
-  }
-
   return (
     <div>
-      Login Page
+      Login Page 1
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div style={{ display: "flex", flexDirection: "column", width: "250px", gap: "10px" }}>

@@ -11,4 +11,7 @@ export const PostsAPI = {
 
     return data
   },
+  createPost: async (data) => {
+    await axios.post("/posts", data)
+  },
 }

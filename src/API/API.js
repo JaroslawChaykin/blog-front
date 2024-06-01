@@ -5,7 +5,7 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use((config) => {
-  config.headers.Authorization = localStorage.getItem("token")
+  config.headers.Authorization = localStorage.getItem("token") || sessionStorage.getItem("token")
 
   return config
 })
