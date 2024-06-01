@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import { isAuthSelector } from "../../../store/slices/Auth/auth.js"
-import { Navigate } from "react-router-dom"
+import { Navigate, useNavigate } from "react-router-dom"
 import SimpleMdeReact from "react-simplemde-editor"
 import "easymde/dist/easymde.min.css"
 import styles from "./AddPost.module.scss"
@@ -9,6 +9,8 @@ import { UploadAPI } from "../../../API/Upload/Upload.js"
 import { PostsAPI } from "../../../API/Posts/Posts.js"
 
 const AddPost = () => {
+  const navigate = useNavigate()
+
   const isAuth = useSelector(isAuthSelector)
   const [postBody, setPostBody] = useState("")
   const [postImageUrl, setPostImageUrl] = useState("")
@@ -51,7 +53,7 @@ const AddPost = () => {
 
     await PostsAPI.createPost(postData)
 
-    return <Navigate to="/" />
+    navigate(-1)
   }
 
   const options = useMemo(() => ({
