@@ -1,11 +1,14 @@
 import useFetch from "../../../hooks/useFetch.js"
 import { useParams } from "react-router-dom"
+import ReactMarkdown from "react-markdown"
+import { useIsOwner } from "../../../hooks/useIsOwner.js"
 
 const FullPost = () => {
   const params = useParams()
   const { data, loading, error } = useFetch("http://localhost:4444/posts/" + params.id)
+  const isOwner = useIsOwner(data?.user?._id)
 
-  if (error) {
+  if (error || !data) {
     return <p>Error</p>
   }
 
@@ -15,9 +18,11 @@ const FullPost = () => {
 
   return (
     <div>
-      Full post
+      <p>Full post {isOwner ? "owner" : ""}</p>
 
-      {JSON.stringify(data)}
+      <h1>{data.title}</h1>
+
+      <ReactMarkdown>{data.text}</ReactMarkdown>
     </div>
   )
 }

@@ -32,12 +32,7 @@ const AddPost = () => {
   }
 
   const addTag = (e) => {
-    if (e.key === "Enter") {
-      setPostTags([...postTags, postTagInput])
-      setPostTagInput("")
-    }
-
-    if (e.type === "click") {
+    if (e.key === "Enter" || e.type === "click") {
       setPostTags([...postTags, postTagInput])
       setPostTagInput("")
     }
@@ -51,9 +46,9 @@ const AddPost = () => {
       imageUrl: postImageUrl,
     }
 
-    await PostsAPI.createPost(postData)
+    const post = await PostsAPI.createPost(postData)
 
-    navigate(-1)
+    navigate("/posts/" + post._id)
   }
 
   const options = useMemo(() => ({
@@ -90,6 +85,7 @@ const AddPost = () => {
           value={postTitle}
           onChange={e => setpostTitle(e.target.value)}
         />
+
         {postTags.map((tag => <span>{tag}</span>))}
 
         <input

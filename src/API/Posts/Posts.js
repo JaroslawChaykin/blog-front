@@ -12,6 +12,11 @@ export const PostsAPI = {
     return data
   },
   createPost: async (data) => {
-    await axios.post("/posts", data)
+    const { data: post } = await axios.post("/posts", data)
+
+    return post
+  },
+  deletePost: async (id) => {
+    await axios.delete("/posts/" + id)
   },
 }

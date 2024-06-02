@@ -24,6 +24,7 @@ export const authSlice = createSlice({
   },
 })
 export const isAuthSelector = (state) => Boolean(state.auth.user)
+export const getUser = (state) => state.auth.user?.userData
 
 export const { signOut } = authSlice.actions
 

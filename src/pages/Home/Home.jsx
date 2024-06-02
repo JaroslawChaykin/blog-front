@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { fetchPosts } from "../../store/slices/Posts/fetchPost.js"
+import { Link } from "react-router-dom"
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -22,7 +23,7 @@ const Home = () => {
     <div>
       Home page
       {
-        posts.data.map(post => <p>{post.title}</p>)
+        posts.data.map(post => <div><Link to={"posts/" + post._id}>{post.title}</Link></div>)
       }
     </div>
   )

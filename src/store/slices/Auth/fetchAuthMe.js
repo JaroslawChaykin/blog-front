@@ -11,7 +11,7 @@ export const fetchAuthMeBuilder = (builder) => {
     state.status = "loading"
   })
   builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
-    state.user = action.payload
+    state.user = { userData: action.payload }
     state.status = "loaded"
   })
   builder.addCase(fetchAuthMe.rejected, (state) => {

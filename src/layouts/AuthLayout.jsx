@@ -7,7 +7,7 @@ const AuthLayout = () => {
   const navigate = useNavigate()
 
   if (isAuth) {
-    navigate(-1)
+    navigate("/")
   }
 
   return (
