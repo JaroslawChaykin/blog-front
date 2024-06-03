@@ -28,6 +28,10 @@ const routerList = createBrowserRouter([
         path: RouterPath.FULL_POST,
         element: LazyPage(lazy(() => import("../pages/Post/FullPost/FullPost.jsx"))),
       },
+      {
+        path: RouterPath.EDIT_POST,
+        element: LazyPage(lazy(() => import("../pages/Post/AddPost/AddPost.jsx"))),
+      },
     ],
   },
   {

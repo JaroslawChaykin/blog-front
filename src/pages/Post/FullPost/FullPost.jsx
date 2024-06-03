@@ -1,5 +1,5 @@
 import useFetch from "../../../hooks/useFetch.js"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import ReactMarkdown from "react-markdown"
 import { useIsOwner } from "../../../hooks/useIsOwner.js"
 import { useDispatch } from "react-redux"
@@ -29,6 +29,8 @@ const FullPost = () => {
   return (
     <div>
       <p>Full post {isOwner ? "owner" : ""}</p>
+
+      <span>{isOwner ? <Link to={`/posts/${data._id}/edit`}>Edit</Link> : ""}</span>
 
       {isOwner ? <button onClick={removePostHandler}>Remove post</button> : ""}
 

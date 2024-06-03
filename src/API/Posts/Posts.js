@@ -16,6 +16,11 @@ export const PostsAPI = {
 
     return post
   },
+  updatePost: async (id, data) => {
+    const { data: post } = await axios.patch(`/posts/${id}`, data)
+
+    return post
+  },
   deletePost: async (id) => {
     await axios.delete("/posts/" + id)
   },
