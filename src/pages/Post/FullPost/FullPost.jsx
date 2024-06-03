@@ -12,11 +12,11 @@ const FullPost = () => {
   const { data, loading, error } = useFetch("http://localhost:4444/posts/" + params.id)
   const isOwner = useIsOwner(data?.user?._id)
 
-  if (error || !data) {
+  if (error) {
     return <p>Error</p>
   }
 
-  if (loading) {
+  if (loading || !data) {
     return <p>Loading...</p>
   }
 

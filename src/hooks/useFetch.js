@@ -23,6 +23,7 @@ function useFetch(url) {
       })
       .finally(() => {
         setLoading(false)
+        setError(null)
       })
 
     return () => {

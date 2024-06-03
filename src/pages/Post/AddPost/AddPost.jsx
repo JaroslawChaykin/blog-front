@@ -81,6 +81,10 @@ const AddPost = () => {
     }
   }, [id])
 
+  if (!isAuth) {
+    navigate("/")
+  }
+
   return (
     <div>
       Add post
