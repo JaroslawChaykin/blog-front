@@ -35,7 +35,10 @@ const Home = () => {
             <Link to={"posts/" + post._id}>{post.title}</Link>
             {
               post.user._id === user?._id ?
-                <button onClick={() => removePostHandler(post._id)}>Delete Post</button> : ""
+                <span>
+                  <button onClick={() => removePostHandler(post._id)}>Delete Post</button>
+                  <Link to={`/posts/${post._id}/edit`}>Edit Post</Link>
+                </span> : ""
             }
 
           </div>
