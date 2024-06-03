@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import { isAuthSelector } from "../../../store/slices/Auth/auth.js"
-import { Navigate, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import SimpleMdeReact from "react-simplemde-editor"
 import "easymde/dist/easymde.min.css"
 import styles from "./AddPost.module.scss"
@@ -49,8 +49,8 @@ const AddPost = () => {
 
     const post = isEditMode ? await PostsAPI.updatePost(id, postData) : await PostsAPI.createPost(postData)
 
-    if (post.message === "Updated") {
-      navigate("/posts/" + id)
+    if (post.message === "Updated" || post._id) {
+      navigate("/posts/" + (id || post._id))
     } else {
       setPostCreateError("Не удалось создать пост")
     }
