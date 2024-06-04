@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import { isAuthSelector } from "../../../store/slices/Auth/auth.js"
-import { useNavigate, useParams } from "react-router-dom"
+import { Navigate, useNavigate, useParams } from "react-router-dom"
 import SimpleMdeReact from "react-simplemde-editor"
 import "easymde/dist/easymde.min.css"
 import styles from "./AddPost.module.scss"
@@ -21,6 +21,10 @@ const AddPost = () => {
   const [postTitle, setpostTitle] = useState("")
   const [postTagInput, setPostTagInput] = useState("")
   const [postTags, setPostTags] = useState([])
+
+  if (!isAuth) {
+    return <Navigate to="/sign-in" />
+  }
 
 
   const postBodyHandler = useCallback(value => {
@@ -80,10 +84,6 @@ const AddPost = () => {
       setCurrentPost()
     }
   }, [id])
-
-  if (!isAuth) {
-    navigate("/")
-  }
 
   return (
     <div>
