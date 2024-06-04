@@ -6,6 +6,7 @@ import store from "./store/store.js"
 function App() {
   return (
     <Provider store={store}>
+      tesg
       <AppRouter />
     </Provider>
   )
