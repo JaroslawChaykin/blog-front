@@ -1,12 +1,12 @@
+import { FC, lazy, Suspense, useEffect } from "react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import { RouterPath } from "./router.constants.js"
-import { lazy, Suspense, useEffect } from "react"
-import BasicLayout from "../layouts/BasicLayout.jsx"
-import { useDispatch } from "react-redux"
-import { fetchAuthMe } from "../store/slices/Auth/fetchAuthMe.js"
-import AuthLayout from "../layouts/AuthLayout.jsx"
+import { RouterPath } from "./router.constants"
+import BasicLayout from "../layouts/BasicLayout"
+import { fetchAuthMe } from "../store/slices/Auth/fetchAuthMe"
+import AuthLayout from "../layouts/AuthLayout"
+import { useAppDispatch } from "../hooks/useAppDispatch"
 
-const LazyPage = (Page) => (
+const LazyPage = (Page: FC) => (
   <Suspense fallback={<div>loading...</div>}>
     <Page />
   </Suspense>
@@ -18,15 +18,15 @@ const routerList = createBrowserRouter([
     children: [
       {
         path: RouterPath.HOME,
-        element: LazyPage(lazy(() => import("../pages/Home/Home.jsx"))),
+        element: LazyPage(lazy(() => import("../pages/Home/Home"))),
       },
       {
         path: RouterPath.ADD_POST,
-        element: LazyPage(lazy(() => import("../pages/Post/AddPost/AddPost.jsx"))),
+        element: LazyPage(lazy(() => import("../pages/Post/AddPost/AddPost"))),
       },
       {
         path: RouterPath.FULL_POST,
-        element: LazyPage(lazy(() => import("../pages/Post/FullPost/FullPost.jsx"))),
+        element: LazyPage(lazy(() => import("../pages/Post/FullPost/FullPost"))),
       },
       {
         path: RouterPath.EDIT_POST,
@@ -39,7 +39,7 @@ const routerList = createBrowserRouter([
     children: [
       {
         path: RouterPath.LOGIN,
-        element: LazyPage(lazy(() => import("../pages/Auth/Login/Login.jsx"))),
+        element: LazyPage(lazy(() => import("../pages/Auth/Login/Login"))),
       },
       {
         path: RouterPath.REGISTRATION,
@@ -50,7 +50,7 @@ const routerList = createBrowserRouter([
 ])
 
 const AppRouter = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(fetchAuthMe())

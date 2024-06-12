@@ -1,8 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { fetchPostBuilder } from "./fetchPost.js"
-import { PostsAPI } from "../../../API/Posts/Posts.js"
+import { fetchPostBuilder } from "./fetchPost"
+import { IPost, PostsAPI } from "../../../API/Posts/Posts"
 
-const initialState = {
+export type PostState = {
+  posts: {
+    data: IPost[]
+    status: "loading" | "loaded" | "error"
+  }
+}
+
+const initialState: PostState = {
   posts: {
     data: [],
     status: "loading",
@@ -14,7 +21,7 @@ export const postsSlice = createSlice({
   initialState,
   reducers: {
     deletePost(state, action) {
-      state.posts.data = state.posts.data.filter(post => post._id !== action.payload)
+      state.posts.data = state.posts.data.filter((post) => post._id !== action.payload)
       PostsAPI.deletePost(action.payload)
     },
   },

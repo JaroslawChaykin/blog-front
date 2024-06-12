@@ -1,26 +1,35 @@
+import { FC } from "react"
 import { useForm } from "react-hook-form"
-import { useDispatch } from "react-redux"
 import { fetchRegistration } from "../../../store/slices/Auth/fetchRegistration.js"
+import { useAppDispatch } from "../../../hooks/useAppDispatch.ts"
 
-const Registration = () => {
-  const dispatch = useDispatch()
+interface RegistrationCredentials {
+  email: string
+  password: string
+  birthday: string
+  nickname: string
+  firstName: string
+}
+
+const Registration: FC = () => {
+  const dispatch = useAppDispatch()
 
   const {
     register,
     handleSubmit,
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       email: "mail1@mail.ru",
       password: "123242321",
       firstName: "Andrey",
+      birthday: "",
+      nickname: "",
     },
     mode: "onChange",
   })
 
-  const onSubmit = (values) => {
+  const onSubmit = (values: RegistrationCredentials) => {
     dispatch(fetchRegistration(values))
   }
 
@@ -49,7 +58,6 @@ const Registration = () => {
           <span>{errors.firstName?.message}</span>
 
           <button type="submit">Register me</button>
-
         </div>
       </form>
     </div>

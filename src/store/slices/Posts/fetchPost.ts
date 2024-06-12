@@ -1,11 +1,12 @@
-import { createAsyncThunk } from "@reduxjs/toolkit"
-import { PostsAPI } from "../../../API/Posts/Posts.js"
+import { ActionReducerMapBuilder, createAsyncThunk } from "@reduxjs/toolkit"
+import { IPost, PostsAPI } from "../../../API/Posts/Posts.js"
+import { PostState } from "./posts.ts"
 
-export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
+export const fetchPosts = createAsyncThunk<IPost[]>("posts/fetchPosts", async () => {
   return await PostsAPI.getAllPosts()
 })
 
-export const fetchPostBuilder = (builder) => {
+export const fetchPostBuilder = (builder: ActionReducerMapBuilder<PostState>) => {
   builder.addCase(fetchPosts.pending, (state) => {
     state.posts.data = []
     state.posts.status = "loading"

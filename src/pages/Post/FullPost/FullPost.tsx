@@ -1,16 +1,17 @@
-import useFetch from "../../../hooks/useFetch.js"
+import useFetch from "../../../hooks/useFetch"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import ReactMarkdown from "react-markdown"
-import { useIsOwner } from "../../../hooks/useIsOwner.js"
-import { useDispatch } from "react-redux"
-import { deletePost } from "../../../store/slices/Posts/posts.js"
+import { useIsOwner } from "../../../hooks/useIsOwner"
+import { deletePost } from "../../../store/slices/Posts/posts"
+import { IPost } from "../../../API/Posts/Posts"
+import { useAppDispatch } from "../../../hooks/useAppDispatch.ts"
 
 const FullPost = () => {
   const params = useParams()
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const { data, loading, error } = useFetch("http://localhost:4444/posts/" + params.id)
-  const isOwner = useIsOwner(data?.user?._id)
+  const dispatch = useAppDispatch()
+  const { data, loading, error } = useFetch<IPost>("http://localhost:4444/posts/" + params.id)
+  const isOwner = useIsOwner(data?.user?._id || "")
 
   if (error) {
     return <p>Error</p>

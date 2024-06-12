@@ -1,11 +1,12 @@
-import { createAsyncThunk } from "@reduxjs/toolkit"
-import { AuthAPI } from "../../../API/Auth/Auth.js"
+import { ActionReducerMapBuilder, createAsyncThunk } from "@reduxjs/toolkit"
+import { AuthAPI, IUserData } from "../../../API/Auth/Auth"
+import { AuthUserMe } from "./auth"
 
-export const fetchAuthMe = createAsyncThunk("auth/fetchAuthMe", async () => {
+export const fetchAuthMe = createAsyncThunk<IUserData, void>("auth/fetchAuthMe", async () => {
   return await AuthAPI.getMe()
 })
 
-export const fetchAuthMeBuilder = (builder) => {
+export const fetchAuthMeBuilder = (builder: ActionReducerMapBuilder<AuthUserMe>) => {
   builder.addCase(fetchAuthMe.pending, (state) => {
     state.user = null
     state.status = "loading"

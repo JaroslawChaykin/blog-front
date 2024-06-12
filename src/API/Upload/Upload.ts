@@ -1,6 +1,14 @@
 import axios from "../API"
 
-export const UploadAPI = {
+export type UploadImageData = {
+  url: string
+}
+
+export type UploadAPIMethods = {
+  uploadImage: (file: File) => Promise<UploadImageData>
+}
+
+export const UploadAPI: UploadAPIMethods = {
   uploadImage: async (file) => {
     const formData = new FormData()
     formData.append("image", file)

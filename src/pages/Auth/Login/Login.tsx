@@ -1,16 +1,21 @@
+import { FC } from "react"
 import { useForm } from "react-hook-form"
-import { useDispatch } from "react-redux"
 import { fetchAuth } from "../../../store/slices/Auth/fetchAuth"
+import { useAppDispatch } from "../../../hooks/useAppDispatch.ts"
 
-const Login = () => {
-  const dispatch = useDispatch()
+interface LoginCredentials {
+  email: string
+  password: string
+  shouldRemember: boolean
+}
+
+const Login: FC = () => {
+  const dispatch = useAppDispatch()
 
   const {
     register,
     handleSubmit,
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       email: "mail1@mail.ru",
@@ -20,14 +25,13 @@ const Login = () => {
     mode: "onChange",
   })
 
-  const onSubmit = (values) => {
+  const onSubmit = (values: LoginCredentials) => {
     dispatch(fetchAuth(values))
   }
 
   return (
     <div>
       Login Page 1
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <div style={{ display: "flex", flexDirection: "column", width: "250px", gap: "10px" }}>
           <input
@@ -43,10 +47,7 @@ const Login = () => {
           />
           <span>{errors.password?.message}</span>
           <label>
-            <input
-              type="checkbox"
-              {...register("shouldRemember")}
-            />
+            <input type="checkbox" {...register("shouldRemember")} />
             Запомнить меня
           </label>
 

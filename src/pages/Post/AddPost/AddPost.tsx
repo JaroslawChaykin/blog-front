@@ -1,46 +1,55 @@
-import { useSelector } from "react-redux"
-import { isAuthSelector } from "../../../store/slices/Auth/auth.js"
+import { ChangeEvent, FC, useCallback, useEffect, useMemo, useState } from "react"
+import { isAuthSelector } from "../../../store/slices/Auth/auth"
 import { Navigate, useNavigate, useParams } from "react-router-dom"
 import SimpleMdeReact from "react-simplemde-editor"
 import "easymde/dist/easymde.min.css"
 import styles from "./AddPost.module.scss"
-import { useCallback, useEffect, useMemo, useState } from "react"
-import { UploadAPI } from "../../../API/Upload/Upload.js"
-import { PostsAPI } from "../../../API/Posts/Posts.js"
+import { UploadAPI } from "../../../API/Upload/Upload"
+import { PostsAPI } from "../../../API/Posts/Posts"
+import { useAppSelector } from "../../../hooks/useAppSelector.ts"
 
-const AddPost = () => {
+const AddPost: FC = () => {
   const navigate = useNavigate()
-  const { id } = useParams()
+  const { id } = useParams() as { id: string }
   const isEditMode = Boolean(id)
 
-  const isAuth = useSelector(isAuthSelector)
+  const isAuth = useAppSelector(isAuthSelector)
   const [postCreateError, setPostCreateError] = useState("")
 
-  const [postBody, setPostBody] = useState("")
-  const [postImageUrl, setPostImageUrl] = useState("")
-  const [postTitle, setpostTitle] = useState("")
-  const [postTagInput, setPostTagInput] = useState("")
-  const [postTags, setPostTags] = useState([])
+  const [postBody, setPostBody] = useState<string>("")
+  const [postImageUrl, setPostImageUrl] = useState<string>("")
+  const [postTitle, setpostTitle] = useState<string>("")
+  const [postTagInput, setPostTagInput] = useState<string>("")
+  const [postTags, setPostTags] = useState<string[]>([])
 
   if (!isAuth) {
     return <Navigate to="/sign-in" />
   }
 
-
-  const postBodyHandler = useCallback(value => {
+  const postBodyHandler = useCallback((value: string) => {
     setPostBody(value)
   }, [])
 
-  const handleChangeFile = async (e) => {
+  const handleChangeFile = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return
+    }
+
     const data = await UploadAPI.uploadImage(e.target.files[0])
+
     setPostImageUrl(data.url)
   }
 
-  const addTag = (e) => {
-    if (e.key === "Enter" || e.type === "click") {
+  const addTag = (e: KeyboardEvent) => {
+    if (e.key === "Enter") {
       setPostTags([...postTags, postTagInput])
       setPostTagInput("")
     }
+  }
+
+  const addTagByClick = () => {
+    setPostTags([...postTags, postTagInput])
+    setPostTagInput("")
   }
 
   const createPostHandler = async () => {
@@ -51,24 +60,30 @@ const AddPost = () => {
       imageUrl: postImageUrl,
     }
 
-    const post = isEditMode ? await PostsAPI.updatePost(id, postData) : await PostsAPI.createPost(postData)
+    const post = isEditMode
+      ? await PostsAPI.updatePost(id, postData)
+      : await PostsAPI.createPost(postData)
 
-    if (post.message === "Updated" || post._id) {
+    if (post._id) {
       navigate("/posts/" + (id || post._id))
     } else {
       setPostCreateError("Не удалось создать пост")
     }
   }
 
-  const options = useMemo(() => ({
-    spellChecker: false,
-    autofocus: true,
-    placeholder: "Введите текст...",
-    autosave: {
-      enabled: true,
-      delay: 1000,
-    },
-  }), [])
+  const options = useMemo(
+    () => ({
+      spellChecker: false,
+      autofocus: true,
+      placeholder: "Введите текст...",
+      autosave: {
+        uniqueId: "blog-mde",
+        enabled: true,
+        delay: 1000,
+      },
+    }),
+    []
+  )
 
   useEffect(() => {
     const setCurrentPost = async () => {
@@ -92,25 +107,22 @@ const AddPost = () => {
       <div>
         <img src={"http://localhost:4444/" + postImageUrl} alt="image" />
         <label>
-          <input
-            type="file"
-            onChange={handleChangeFile}
-            hidden
-          />
+          <input type="file" onChange={handleChangeFile} hidden />
           Добавить картинку
         </label>
       </div>
-
       <hr />
       <div>
         <input
           type="text"
           placeholder="Заголовок статьи..."
           value={postTitle}
-          onChange={e => setpostTitle(e.target.value)}
+          onChange={(e) => setpostTitle(e.target.value)}
         />
 
-        {postTags.map((tag => <span>{tag}</span>))}
+        {postTags.map((tag) => (
+          <span>{tag}</span>
+        ))}
 
         <input
           type="text"
@@ -119,7 +131,7 @@ const AddPost = () => {
           onChange={(e) => setPostTagInput(e.target.value)}
           onKeyDown={addTag}
         />
-        <button onClick={addTag}>Add Tag</button>
+        <button onClick={addTagByClick}>Add Tag</button>
 
         <SimpleMdeReact
           className={styles.editor}
@@ -131,9 +143,7 @@ const AddPost = () => {
       </div>
       <div>
         <span>{postCreateError}</span>
-        <button onClick={createPostHandler}>
-          {isEditMode ? "Update Post" : "Create Post"}
-        </button>
+        <button onClick={createPostHandler}>{isEditMode ? "Update Post" : "Create Post"}</button>
       </div>
     </div>
   )
