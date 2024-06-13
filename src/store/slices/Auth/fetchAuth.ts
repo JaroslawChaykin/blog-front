@@ -1,6 +1,7 @@
 import { ActionReducerMapBuilder, createAsyncThunk } from "@reduxjs/toolkit"
 import { AuthAPI, IUser, LoginPropsTypes } from "../../../API/Auth/Auth"
-import { AuthUser } from "./auth.ts"
+import { AuthUser } from "./auth"
+import { StatusAPI } from "../../../types/enums/status.enum"
 
 interface fetchAuthPropsTypes extends LoginPropsTypes {
   shouldRemember: boolean
@@ -26,11 +27,11 @@ export const fetchAuth = createAsyncThunk<fetchAuthReturn, fetchAuthPropsTypes>(
 export const fetchAuthBuilder = (builder: ActionReducerMapBuilder<AuthUser>) => {
   builder.addCase(fetchAuth.pending, (state) => {
     state.user = null
-    state.status = "loading"
+    state.status = StatusAPI.LOADING
   })
   builder.addCase(fetchAuth.fulfilled, (state, action) => {
     state.user = action.payload.data
-    state.status = "loaded"
+    state.status = StatusAPI.LOADED
 
     if (!action.payload.shouldRemember) {
       sessionStorage.setItem("token", action.payload.data.token)
@@ -42,6 +43,6 @@ export const fetchAuthBuilder = (builder: ActionReducerMapBuilder<AuthUser>) => 
   })
   builder.addCase(fetchAuth.rejected, (state) => {
     state.user = null
-    state.status = "error"
+    state.status = StatusAPI.ERROR
   })
 }

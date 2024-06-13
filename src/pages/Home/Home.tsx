@@ -5,6 +5,7 @@ import { deletePost } from "../../store/slices/Posts/posts"
 import { getUser } from "../../store/slices/Auth/auth"
 import { useAppDispatch } from "../../hooks/useAppDispatch"
 import { useAppSelector } from "../../hooks/useAppSelector"
+import { StatusAPI } from "../../types/enums/status.enum.ts"
 
 const Home = () => {
   const dispatch = useAppDispatch()
@@ -15,11 +16,11 @@ const Home = () => {
     dispatch(fetchPosts())
   }, [])
 
-  if (posts.status === "loading") {
+  if (posts.status === StatusAPI.LOADING) {
     return <p>Loading posts</p>
   }
 
-  if (posts.status === "error") {
+  if (posts.status === StatusAPI.ERROR) {
     return <p>Posts error</p>
   }
 

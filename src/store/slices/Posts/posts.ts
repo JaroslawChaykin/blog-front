@@ -1,18 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { fetchPostBuilder } from "./fetchPost"
 import { IPost, PostsAPI } from "../../../API/Posts/Posts"
+import { StatusAPI } from "../../../types/enums/status.enum.ts"
 
 export type PostState = {
   posts: {
     data: IPost[]
-    status: "loading" | "loaded" | "error"
+    status: StatusAPI
   }
 }
 
 const initialState: PostState = {
   posts: {
     data: [],
-    status: "loading",
+    status: StatusAPI.LOADING,
   },
 }
 

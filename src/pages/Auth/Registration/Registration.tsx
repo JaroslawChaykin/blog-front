@@ -44,18 +44,34 @@ const Registration: FC = () => {
             {...register("email", { required: "Укажите почту" })}
           />
           <span>{errors.email?.message}</span>
+
           <input
             type="password"
             placeholder="password"
             {...register("password", { required: "Укажите пароль" })}
           />
           <span>{errors.password?.message}</span>
+
           <input
             type="firstName"
             placeholder="firstName"
             {...register("firstName", { required: "Укажите имя" })}
           />
           <span>{errors.firstName?.message}</span>
+
+          <input
+            type="nickname"
+            placeholder="nickname"
+            {...register("nickname", { required: "Укажите nickname" })}
+          />
+          <span>{errors.nickname?.message}</span>
+
+          <input
+            type="birthday"
+            placeholder="birthday"
+            {...register("birthday", { required: "Укажите дату рождения" })}
+          />
+          <span>{errors.birthday?.message}</span>
 
           <button type="submit">Register me</button>
         </div>

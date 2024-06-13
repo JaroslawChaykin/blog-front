@@ -4,13 +4,14 @@ import ReactMarkdown from "react-markdown"
 import { useIsOwner } from "../../../hooks/useIsOwner"
 import { deletePost } from "../../../store/slices/Posts/posts"
 import { IPost } from "../../../API/Posts/Posts"
-import { useAppDispatch } from "../../../hooks/useAppDispatch.ts"
+import { useAppDispatch } from "../../../hooks/useAppDispatch"
+import { BASE_URL } from "../../../../constants"
 
 const FullPost = () => {
   const params = useParams()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const { data, loading, error } = useFetch<IPost>("http://localhost:4444/posts/" + params.id)
+  const { data, loading, error } = useFetch<IPost>(`${BASE_URL}/posts/${params.id}`)
   const isOwner = useIsOwner(data?.user?._id || "")
 
   if (error) {

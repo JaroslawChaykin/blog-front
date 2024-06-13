@@ -3,11 +3,12 @@ import { fetchAuthBuilder } from "./fetchAuth"
 import { fetchAuthMeBuilder } from "./fetchAuthMe"
 import { fetchRegistrationBuilder } from "./fetchRegistration"
 import { RootState } from "../../store"
-import { IUser, UserWithOutToken } from "../../../API/Auth/Auth.ts"
+import { IUser, UserWithOutToken } from "../../../API/Auth/Auth"
+import { StatusAPI } from "../../../types/enums/status.enum"
 
 export type AuthTypes<T> = {
   user: T | null
-  status: "loading" | "loaded" | "error"
+  status: StatusAPI
 }
 
 export type AuthUser = AuthTypes<IUser>
@@ -15,7 +16,7 @@ export type AuthUserMe = AuthTypes<UserWithOutToken>
 
 const initialState: AuthTypes<IUser> = {
   user: null,
-  status: "loading",
+  status: StatusAPI.LOADING,
 }
 
 export const authSlice = createSlice({
