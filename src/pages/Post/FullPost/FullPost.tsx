@@ -5,7 +5,7 @@ import { useIsOwner } from "../../../hooks/useIsOwner"
 import { deletePost } from "../../../store/slices/Posts/posts"
 import { IPost } from "../../../API/Posts/Posts"
 import { useAppDispatch } from "../../../hooks/useAppDispatch"
-import { BASE_URL } from "../../../../constants"
+import { BASE_URL } from "../../../constants"
 
 const FullPost = () => {
   const params = useParams()
