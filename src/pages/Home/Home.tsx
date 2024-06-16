@@ -5,7 +5,7 @@ import { deletePost } from "../../store/slices/Posts/posts"
 import { getUser } from "../../store/slices/Auth/auth"
 import { useAppDispatch } from "../../hooks/useAppDispatch"
 import { useAppSelector } from "../../hooks/useAppSelector"
-import { StatusAPI } from "../../types/enums/status.enum.ts"
+import { StatusAPI } from "../../types/enums/status.enum"
 
 const Home = () => {
   const dispatch = useAppDispatch()
