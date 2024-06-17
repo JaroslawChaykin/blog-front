@@ -14,7 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchPosts())
-  }, [])
+  }, [dispatch])
 
   if (posts.status === StatusAPI.LOADING) {
     return <p>Loading posts</p>
