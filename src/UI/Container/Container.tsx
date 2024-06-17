@@ -1,19 +1,19 @@
 import { FC, ReactNode } from "react"
 import cl from "./Container.module.scss"
 
+const ContainerStyles = {
+  sm: cl.container_sm,
+  md: cl.container_md,
+  lg: cl.container_lg,
+}
+
 type ContainerProps = {
-  maxW: "sm" | "md" | "lg"
+  maxW: keyof typeof ContainerStyles
   children: ReactNode
 }
 
 const Container: FC<ContainerProps> = ({ maxW = "sm", children }) => {
-  const styles = {
-    sm: cl.container_sm,
-    md: cl.container_md,
-    lg: cl.container_lg,
-  }
-
-  return <div className={`${cl.container} ${styles[maxW]}`}>{children}</div>
+  return <div className={`${cl.container} ${ContainerStyles[maxW]}`}>{children}</div>
 }
 
 export default Container
