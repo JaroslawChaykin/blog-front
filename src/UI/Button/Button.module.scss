@@ -1,0 +1,42 @@
+.btn {
+  border-radius: 4px;
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+  &.size_sm {
+    font-size: 12px;
+    padding: 4px 12px;
+  }
+
+  &.size_md {
+    font-size: 16px;
+    padding: 6px 18px;
+  }
+
+  &.size_lg {
+    font-size: 20px;
+    padding: 8px 24px;
+  }
+
+  &.primary {
+    background: #f2ccc3;
+    border: 1px solid #f2ccc3;
+  }
+
+  &.outline {
+    background: none;
+    color: #f7f7f9;
+    border: 1px solid #f2ccc3;
+  }
+
+  &.default {
+    background: none;
+    border: 1px solid transparent;
+  }
+
+  &.full {
+    width: 100%;
+  }
+}

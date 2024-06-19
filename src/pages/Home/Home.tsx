@@ -21,7 +21,11 @@ const Home = () => {
   }
 
   if (posts.status === StatusAPI.ERROR) {
-    return <p>Posts error</p>
+    return (
+      <>
+        <p>Posts error</p>
+      </>
+    )
   }
 
   const removePostHandler = (id: string) => {

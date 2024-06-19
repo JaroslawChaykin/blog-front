@@ -15,14 +15,15 @@ const Header: FC = () => {
 
   return (
     <header>
-      <Link to={RouterPath.HOME}> Home </Link> |<Link to={RouterPath.ADD_POST}> Add post </Link> |
+      <Link to={RouterPath.HOME}> Home </Link>
+      <Link to={RouterPath.ADD_POST}> Add post </Link>
       {isAuth ? (
         <span>
           <button onClick={SignOutHandler}>Sign Out</button>
         </span>
       ) : (
         <span>
-          <Link to={RouterPath.LOGIN}> Sign In </Link> |
+          <Link to={RouterPath.LOGIN}> Sign In </Link> /
           <Link to={RouterPath.REGISTRATION}> Sign Up </Link>
         </span>
       )}

@@ -1,0 +1,18 @@
+.basicLayout {
+  min-height: 100vh;
+  color: #f7f7f9;
+  background: #212227;
+  .header {
+    background: #151517;
+    padding: 10px 0;
+
+    a {
+      color: #f7f7f9;
+      border-radius: 2px;
+      padding: 6px 12px;
+      &:hover {
+        background: #262629;
+      }
+    }
+  }
+}
