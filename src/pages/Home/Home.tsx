@@ -6,6 +6,7 @@ import { getUser } from "../../store/slices/Auth/auth"
 import { useAppDispatch } from "../../hooks/useAppDispatch"
 import { useAppSelector } from "../../hooks/useAppSelector"
 import { StatusAPI } from "../../types/enums/status.enum"
+import Alert from "../../UI/Alert/Alert"
 
 const Home = () => {
   const dispatch = useAppDispatch()
@@ -17,14 +18,20 @@ const Home = () => {
   }, [dispatch])
 
   if (posts.status === StatusAPI.LOADING) {
-    return <p>Loading posts</p>
+    return (
+      <Alert status="warning">
+        <Alert.Title size="lg">Posts</Alert.Title>
+        <Alert.Description size="sm">Posts Loading</Alert.Description>
+      </Alert>
+    )
   }
 
   if (posts.status === StatusAPI.ERROR) {
     return (
-      <>
-        <p>Posts error</p>
-      </>
+      <Alert status="error">
+        <Alert.Title size="lg">Posts</Alert.Title>
+        <Alert.Description size="sm">Error posts not loaded</Alert.Description>
+      </Alert>
     )
   }
 

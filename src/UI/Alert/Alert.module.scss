@@ -1,0 +1,21 @@
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  color: black;
+  border-radius: 8px;
+  padding: 10px 25px;
+
+  &.error {
+    background: red;
+  }
+
+  &.success {
+    background: green;
+  }
+
+  &.warning {
+    background: orange;
+  }
+}
