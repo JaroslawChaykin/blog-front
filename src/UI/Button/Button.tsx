@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react"
+import { ButtonHTMLAttributes, FC, ReactNode } from "react"
 import cl from "./Button.module.scss"
 
 const sizeStyles = {
@@ -13,7 +13,7 @@ const variantStyles = {
   default: cl.default,
 }
 
-type ButtonProps = {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   leftIcon?: ReactNode
   rightIcon?: ReactNode
   children?: ReactNode
@@ -33,11 +33,12 @@ const Button: FC<ButtonProps> = ({
   full,
   disabled,
   onClickHandle,
+  ...rest
 }) => {
   const styles = `${cl.btn} ${sizeStyles[size]} ${variantStyles[variant]} ${full ? cl.full : ""}`
 
   return (
-    <button className={styles} disabled={disabled} onClick={onClickHandle}>
+    <button className={styles} disabled={disabled} onClick={onClickHandle} {...rest}>
       {leftIcon}
       <span>{children}</span>
       {rightIcon}

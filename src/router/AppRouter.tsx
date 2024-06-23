@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { RouterPath } from "./router.constants"
 import BasicLayout from "../layouts/BasicLayout/BasicLayout.js"
 import { fetchAuthMe } from "../store/slices/Auth/fetchAuthMe"
-import AuthLayout from "../layouts/AuthLayout"
+import AuthLayout from "../layouts/AuthLayout/AuthLayout.js"
 import { useAppDispatch } from "../hooks/useAppDispatch"
 
 const LazyPage = (Page: FC) => (

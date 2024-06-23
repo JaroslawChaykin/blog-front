@@ -1,0 +1,45 @@
+.login {
+  display: flex;
+  .form_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 50%;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 400px;
+      width: 100%;
+      padding: 15px;
+    }
+  }
+
+  &_void {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100vh;
+    background: #27282c;
+
+    .void_circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgb(197, 239, 128);
+    }
+
+    .void_blur {
+      position: absolute;
+      width: 100%;
+      height: 50vh;
+      bottom: 0;
+      backdrop-filter: blur(15px);
+    }
+  }
+}
