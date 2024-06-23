@@ -14,8 +14,9 @@ const variantStyles = {
 }
 
 type ButtonProps = {
-  icon?: ReactNode
-  text?: string
+  leftIcon?: ReactNode
+  rightIcon?: ReactNode
+  children?: ReactNode
   variant?: keyof typeof variantStyles
   size?: keyof typeof sizeStyles
   full?: boolean
@@ -24,8 +25,9 @@ type ButtonProps = {
 }
 
 const Button: FC<ButtonProps> = ({
-  icon,
-  text,
+  leftIcon,
+  rightIcon,
+  children,
   variant = "default",
   size = "sm",
   full,
@@ -36,8 +38,9 @@ const Button: FC<ButtonProps> = ({
 
   return (
     <button className={styles} disabled={disabled} onClick={onClickHandle}>
-      {icon}
-      <span>{text}</span>
+      {leftIcon}
+      <span>{children}</span>
+      {rightIcon}
     </button>
   )
 }

@@ -1,5 +1,8 @@
 .btn {
+  display: flex;
+  align-items: center;
   border-radius: 4px;
+  cursor: pointer;
 
   &:disabled {
     opacity: 0.3;
@@ -21,22 +24,37 @@
   }
 
   &.primary {
-    background: #f2ccc3;
-    border: 1px solid #f2ccc3;
+    background: rgb(197, 239, 128);
+    border: 1px solid rgb(197, 239, 128);
+
+    &:hover {
+      background: none;
+      color: #f7f7f9;
+    }
   }
 
   &.outline {
     background: none;
     color: #f7f7f9;
-    border: 1px solid #f2ccc3;
+    border: 1px solid rgb(197, 239, 128);
+
+    &:hover {
+      background: rgba(196, 239, 128, 0.05);
+    }
   }
 
   &.default {
     background: none;
     border: 1px solid transparent;
+    color: #f7f7f9;
+
+    &:hover {
+      background: rgba(196, 239, 128, 0.05);
+    }
   }
 
   &.full {
     width: 100%;
+    justify-content: center;
   }
 }
