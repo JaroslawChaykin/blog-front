@@ -20,8 +20,9 @@ const Home = () => {
   if (posts.status === StatusAPI.LOADING) {
     return (
       <Alert status="warning">
-        <Alert.Title size="lg">Posts</Alert.Title>
-        <Alert.Description size="sm">Posts Loading</Alert.Description>
+        <Alert.Icon />
+        <Alert.Title size="2xl">Posts: </Alert.Title>
+        <Alert.Description size="2xl">Loading</Alert.Description>
       </Alert>
     )
   }
@@ -29,8 +30,9 @@ const Home = () => {
   if (posts.status === StatusAPI.ERROR) {
     return (
       <Alert status="error">
-        <Alert.Title size="lg">Posts</Alert.Title>
-        <Alert.Description size="sm">Error posts not loaded</Alert.Description>
+        <Alert.Icon />
+        <Alert.Title size="2xl">Posts: </Alert.Title>
+        <Alert.Description size="2xl">Error not loaded</Alert.Description>
       </Alert>
     )
   }

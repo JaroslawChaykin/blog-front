@@ -1,6 +1,6 @@
-import React, { FC, ReactNode } from "react"
-import cl from "./Title.module.scss"
+import { FC, ReactNode } from "react"
 import { textSizes } from "../Text/Text"
+import cl from "./Title.module.scss"
 
 const titleSizeStyles = {
   "6xl": cl.text_6xl,

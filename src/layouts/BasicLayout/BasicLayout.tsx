@@ -6,6 +6,7 @@ import cl from "./BasicLayout.module.scss"
 const BasicLayout = () => {
   const styles = `${cl.basicLayout}`
   const stylesHeader = `${cl.header}`
+  const stylesContent = `${cl.content}`
   return (
     <div className={styles}>
       <div className={stylesHeader}>
@@ -13,9 +14,11 @@ const BasicLayout = () => {
           <Header />
         </Container>
       </div>
-      <Container maxW={"lg"}>
-        <Outlet />
-      </Container>
+      <div className={stylesContent}>
+        <Container maxW={"lg"}>
+          <Outlet />
+        </Container>
+      </div>
     </div>
   )
 }

@@ -3,19 +3,29 @@
   align-items: center;
   gap: 10px;
   background: white;
-  color: black;
   border-radius: 8px;
   padding: 10px 25px;
 
   &.error {
-    background: red;
+    background: #f42c0450;
+    border: 1px solid #f42c04;
+    color: #f42c04;
   }
 
   &.success {
-    background: green;
+    background: #c6f91f50;
+    border: 1px solid #c6f91f;
+    color: #c6f91f;
   }
 
   &.warning {
-    background: orange;
+    background: #ff855250;
+    border: 1px solid #ff8552;
+    color: #ff8552;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
   }
 }

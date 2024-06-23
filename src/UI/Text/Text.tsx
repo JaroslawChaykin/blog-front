@@ -18,16 +18,11 @@ export type textSizes = keyof typeof textSizeStyles
 
 type TextProps = {
   size?: textSizes
-  color?: string
   children: ReactNode
 }
 
-const Text: FC<TextProps> = ({ size = "sm", color = "black", children }) => {
-  return (
-    <p className={`${textSizeStyles[size]}`} style={{ color }}>
-      {children}
-    </p>
-  )
+const Text: FC<TextProps> = ({ size = "sm", children }) => {
+  return <p className={`${textSizeStyles[size]}`}>{children}</p>
 }
 
 export default Text
