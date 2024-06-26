@@ -13,16 +13,14 @@ const variantStyles = {
   default: cl.default,
 }
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonProps = {
   leftIcon?: ReactNode
   rightIcon?: ReactNode
   children?: ReactNode
   variant?: keyof typeof variantStyles
   size?: keyof typeof sizeStyles
   full?: boolean
-  disabled?: boolean
-  onClickHandle?: () => void
-}
+} & ButtonHTMLAttributes<HTMLButtonElement>
 
 const Button: FC<ButtonProps> = ({
   leftIcon,
@@ -31,14 +29,12 @@ const Button: FC<ButtonProps> = ({
   variant = "default",
   size = "sm",
   full,
-  disabled,
-  onClickHandle,
   ...rest
 }) => {
   const styles = `${cl.btn} ${sizeStyles[size]} ${variantStyles[variant]} ${full ? cl.full : ""}`
 
   return (
-    <button className={styles} disabled={disabled} onClick={onClickHandle} {...rest}>
+    <button className={styles} {...rest}>
       {leftIcon}
       <span>{children}</span>
       {rightIcon}
