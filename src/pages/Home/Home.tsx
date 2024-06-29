@@ -6,7 +6,7 @@ import { getUser } from "../../store/slices/Auth/auth"
 import { useAppDispatch } from "../../hooks/useAppDispatch"
 import { useAppSelector } from "../../hooks/useAppSelector"
 import { StatusAPI } from "../../types/enums/status.enum"
-import Alert from "../../UI/Alert/Alert"
+import { Alert } from "../../UI"
 
 const Home = () => {
   const dispatch = useAppDispatch()

@@ -2,10 +2,8 @@ import { FC } from "react"
 import { useForm } from "react-hook-form"
 import { fetchAuth } from "../../../store/slices/Auth/fetchAuth"
 import { useAppDispatch } from "../../../hooks/useAppDispatch"
-import Button from "../../../UI/Button/Button"
+import { Button, Input, Title } from "../../../UI"
 import cl from "./Login.module.scss"
-import Title from "../../../UI/Title/Title"
-import { Input } from "../../../UI"
 
 interface LoginCredentials {
   email: string
