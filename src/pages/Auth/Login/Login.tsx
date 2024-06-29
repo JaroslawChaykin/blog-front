@@ -5,6 +5,7 @@ import { useAppDispatch } from "../../../hooks/useAppDispatch"
 import Button from "../../../UI/Button/Button"
 import cl from "./Login.module.scss"
 import Title from "../../../UI/Title/Title"
+import { Input } from "../../../UI"
 
 interface LoginCredentials {
   email: string
@@ -18,7 +19,7 @@ const Login: FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     defaultValues: {
       email: "mail1@mail.ru",
@@ -39,26 +40,28 @@ const Login: FC = () => {
           Sign In
         </Title>
         <form onSubmit={handleSubmit(onSubmit)} className={cl.form}>
-          <input
+          <Input
             type="email"
             placeholder="email"
             {...register("email", { required: "Укажите почту" })}
+            isValid={!errors.email}
           />
           <span>{errors.email?.message}</span>
 
-          <input
+          <Input
             type="password"
             placeholder="password"
             {...register("password", { required: "Укажите пароль" })}
+            isValid={!errors.password}
           />
           <span>{errors.password?.message}</span>
 
           <label>
-            <input type="checkbox" {...register("shouldRemember")} />
+            <Input type="checkbox" {...register("shouldRemember")} />
             Запомнить меня
           </label>
 
-          <Button type="submit" variant="primary" size="lg" full>
+          <Button type="submit" variant="primary" size="lg" full disabled={!isValid}>
             Login
           </Button>
         </form>

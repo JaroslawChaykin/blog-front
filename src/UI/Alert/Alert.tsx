@@ -1,8 +1,8 @@
 import { FC, ReactNode, createContext, useContext, useEffect, useState } from "react"
 import Title from "../Title/Title"
 import Text, { textSizes } from "../Text/Text"
-import cl from "./Alert.module.scss"
 import { AiFillCheckCircle, AiFillExclamationCircle, AiFillWarning } from "react-icons/ai"
+import cl from "./Alert.module.scss"
 
 const AlertContext = createContext<keyof typeof statusIcons>("success")
 
