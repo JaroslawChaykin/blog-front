@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { fetchAuth } from "../../../store/slices/Auth/fetchAuth"
 import { useAppDispatch } from "../../../hooks/useAppDispatch"
 import { Button, Input, Title } from "../../../UI"
+import { Link } from "react-router-dom"
 import cl from "./Login.module.scss"
 
 interface LoginCredentials {
@@ -44,7 +45,7 @@ const Login: FC = () => {
             {...register("email", { required: "Укажите почту" })}
             isValid={!errors.email}
           />
-          <span>{errors.email?.message}</span>
+          <span className={cl.input_error}>{errors.email?.message}</span>
 
           <Input
             type="password"
@@ -52,7 +53,7 @@ const Login: FC = () => {
             {...register("password", { required: "Укажите пароль" })}
             isValid={!errors.password}
           />
-          <span>{errors.password?.message}</span>
+          <span className={cl.input_error}>{errors.password?.message}</span>
 
           <label>
             <Input type="checkbox" {...register("shouldRemember")} />
@@ -62,6 +63,10 @@ const Login: FC = () => {
           <Button type="submit" variant="primary" size="lg" full disabled={!isValid}>
             Login
           </Button>
+
+          <span>
+            Нет аккаунта? <Link to="/sign-up">Зарегистрироваться</Link>
+          </span>
         </form>
       </div>
       <div className={cl.login_void}>

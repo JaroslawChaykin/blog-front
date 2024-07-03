@@ -27,7 +27,7 @@
     background: rgb(197, 239, 128);
     border: 1px solid rgb(197, 239, 128);
 
-    &:hover {
+    &:not(:disabled):hover {
       background: none;
       color: #f7f7f9;
     }
