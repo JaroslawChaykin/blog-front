@@ -1,18 +1,20 @@
+@import "../../styles/index.scss";
+
 .input {
   padding: 15px 25px;
-  border-radius: 4px;
+  border-radius: $border-radius;
   border: none;
-  color: #f7f7f9;
+  color: $white-color;
 
   &.filled {
-    background: #f7f7f9;
+    background: $white-color;
     color: black;
     border: 2px solid transparent;
   }
 
   &.outline {
     background: inherit;
-    border: 2px solid rgb(197, 239, 128);
+    border: 2px solid $primary-color;
   }
 
   &.unstyled {
@@ -22,11 +24,11 @@
   &.underline {
     background: none;
     border-radius: 0;
-    border-bottom: 2px solid rgb(197, 239, 128);
+    border-bottom: 2px solid $primary-color;
   }
 
   &.nonValid {
-    border: 2px solid red;
-    box-shadow: 0 0 3px 2px #f7f7f9;
+    border: 2px solid $danger-color;
+    box-shadow: 0 0 0 2px $white-color;
   }
 }

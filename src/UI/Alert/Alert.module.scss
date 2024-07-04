@@ -1,27 +1,29 @@
+@import "../../styles/index.scss";
+
 .alert {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: white;
-  border-radius: 8px;
+  background: $white-color;
+  border-radius: $border-radius;
   padding: 10px 25px;
 
   &.error {
-    background: #f42c0450;
-    border: 1px solid #f42c04;
-    color: #f42c04;
+    background: $danger-color-05;
+    border: 1px solid $danger-color;
+    color: $danger-color;
   }
 
   &.success {
-    background: #c6f91f50;
-    border: 1px solid #c6f91f;
-    color: #c6f91f;
+    background: $success-color-05;
+    border: 1px solid $success-color;
+    color: $success-color;
   }
 
   &.warning {
-    background: #ff855250;
-    border: 1px solid #ff8552;
-    color: #ff8552;
+    background: $warning-color-05;
+    border: 1px solid $warning-color;
+    color: $warning-color;
   }
 
   .icon {

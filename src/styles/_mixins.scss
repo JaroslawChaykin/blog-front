@@ -1,0 +1,10 @@
+@mixin flex-all-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-V-all-center {
+  @include flex-all-center;
+  flex-direction: column;
+}

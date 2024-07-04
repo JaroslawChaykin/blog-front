@@ -1,7 +1,9 @@
+@import "../../styles/index.scss";
+
 .btn {
   display: flex;
   align-items: center;
-  border-radius: 4px;
+  border-radius: $border-radius;
   cursor: pointer;
 
   &:disabled {
@@ -24,32 +26,32 @@
   }
 
   &.primary {
-    background: rgb(197, 239, 128);
-    border: 1px solid rgb(197, 239, 128);
+    background: $primary-color;
+    border: 1px solid $primary-color;
 
     &:not(:disabled):hover {
       background: none;
-      color: #f7f7f9;
+      color: $white-color;
     }
   }
 
   &.outline {
     background: none;
-    color: #f7f7f9;
-    border: 1px solid rgb(197, 239, 128);
+    color: $white-color;
+    border: 1px solid $primary-color;
 
     &:hover {
-      background: rgba(196, 239, 128, 0.05);
+      background: $bg-dark-color;
     }
   }
 
   &.default {
     background: none;
     border: 1px solid transparent;
-    color: #f7f7f9;
+    color: $white-color;
 
     &:hover {
-      background: rgba(196, 239, 128, 0.05);
+      background: $bg-dark-color;
     }
   }
 
