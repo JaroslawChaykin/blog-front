@@ -26,6 +26,7 @@ export const authSlice = createSlice({
     signOut(state) {
       state.user = null
       localStorage.removeItem("token")
+      sessionStorage.removeItem("token")
     },
   },
   extraReducers: (builder) => {
