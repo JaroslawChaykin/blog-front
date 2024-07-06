@@ -20,6 +20,7 @@ type ButtonProps = {
   variant?: keyof typeof variantStyles
   size?: keyof typeof sizeStyles
   full?: boolean
+  className?: string
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 const Button: FC<ButtonProps> = ({
@@ -29,9 +30,10 @@ const Button: FC<ButtonProps> = ({
   variant = "default",
   size = "sm",
   full,
+  className,
   ...rest
 }) => {
-  const styles = `${cl.btn} ${sizeStyles[size]} ${variantStyles[variant]} ${full ? cl.full : ""}`
+  const styles = `${className} ${cl.btn} ${sizeStyles[size]} ${variantStyles[variant]} ${full ? cl.full : ""}`
 
   return (
     <button className={styles} {...rest}>

@@ -17,6 +17,16 @@ const Home = () => {
     dispatch(fetchPosts())
   }, [dispatch])
 
+  if (posts.data.length === 0) {
+    return (
+      <Alert status="warning">
+        <Alert.Icon />
+        <Alert.Title size="2xl">Posts: </Alert.Title>
+        <Alert.Description size="2xl">Not found posts</Alert.Description>
+      </Alert>
+    )
+  }
+
   if (posts.status === StatusAPI.LOADING) {
     return (
       <Alert status="warning">
@@ -43,11 +53,10 @@ const Home = () => {
 
   return (
     <div>
-      Home page
       {posts.data.map((post) => (
         <div>
           <Link to={"posts/" + post._id}>{post.title}</Link>
-          {post.user._id === user?._id ? (
+          {post.user && post.user._id === user?._id ? (
             <span>
               <button onClick={() => removePostHandler(post._id)}>Delete Post</button>
               <Link to={`/posts/${post._id}/edit`}>Edit Post</Link>
