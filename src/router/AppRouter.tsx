@@ -58,7 +58,7 @@ const AppRouter = () => {
 
   useEffect(() => {
     dispatch(fetchAuthMe())
-  }, [])
+  }, [dispatch])
 
   return <RouterProvider router={routerList} />
 }
