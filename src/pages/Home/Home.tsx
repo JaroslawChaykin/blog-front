@@ -17,16 +17,6 @@ const Home = () => {
     dispatch(fetchPosts())
   }, [dispatch])
 
-  if (posts.data.length === 0) {
-    return (
-      <Alert status="warning">
-        <Alert.Icon />
-        <Alert.Title size="2xl">Posts: </Alert.Title>
-        <Alert.Description size="2xl">Not found posts</Alert.Description>
-      </Alert>
-    )
-  }
-
   if (posts.status === StatusAPI.LOADING) {
     return (
       <Alert status="warning">
@@ -43,6 +33,16 @@ const Home = () => {
         <Alert.Icon />
         <Alert.Title size="2xl">Posts: </Alert.Title>
         <Alert.Description size="2xl">Error not loaded</Alert.Description>
+      </Alert>
+    )
+  }
+
+  if (posts.data.length === 0) {
+    return (
+      <Alert status="warning">
+        <Alert.Icon />
+        <Alert.Title size="2xl">Posts: </Alert.Title>
+        <Alert.Description size="2xl">Not found posts</Alert.Description>
       </Alert>
     )
   }
