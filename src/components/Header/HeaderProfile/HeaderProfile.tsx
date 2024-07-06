@@ -1,30 +1,46 @@
-import { useState } from "react"
-import Button from "../../../UI/Button/Button"
-import { useAppDispatch } from "../../../hooks/useAppDispatch"
-import { signOut } from "../../../store/slices/Auth/auth"
-import cl from "./HeaderProfile.module.scss"
+import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
+import { useAppDispatch } from "../../../hooks/useAppDispatch"
+import { getUser, signOut } from "../../../store/slices/Auth/auth"
+import { useAppSelector } from "../../../hooks/useAppSelector"
+import { Button } from "../../../UI"
+import cl from "./HeaderProfile.module.scss"
 
 const HeaderProfile = () => {
   const dispatch = useAppDispatch()
   const [showProfileOptions, setShowProfileOptions] = useState(false)
+  const user = useAppSelector(getUser)
+  const profileOptionsRef = useRef<HTMLDivElement>(null)
 
   const SignOutHandler = () => {
     dispatch(signOut())
   }
 
-  const toggleShowProfileOptions = () => {
-    setShowProfileOptions((prev) => !prev)
+  const clickAroundHeaderProfile = (e: MouseEvent) => {
+    if (!profileOptionsRef.current) return
+    if (!profileOptionsRef.current.contains(e.target as Node)) {
+      setShowProfileOptions(false)
+    }
   }
 
+  useEffect(() => {
+    document.addEventListener("click", clickAroundHeaderProfile)
+
+    return () => {
+      document.removeEventListener("click", clickAroundHeaderProfile)
+    }
+  }, [showProfileOptions])
+
   return (
-    <div className={cl.profile}>
-      <span onClick={toggleShowProfileOptions}>NickName</span>
+    <div className={cl.profile} ref={profileOptionsRef}>
+      <Button variant="default" size="md" onClick={() => setShowProfileOptions((prev) => !prev)}>
+        NickName
+      </Button>
 
       <div className={showProfileOptions ? cl.profile_options : cl.hidden}>
-        <Link to="#">Profile</Link>
-        <Link to="#">Settings</Link>
-        <Button variant="primary" full onClickHandle={SignOutHandler}>
+        <Link to={`${user?.nickname}`}>Profile</Link>
+        <Link to={`${user?.nickname}/settings`}>Settings</Link>
+        <Button variant="primary" full onClick={SignOutHandler}>
           Sign Out
         </Button>
       </div>
