@@ -69,10 +69,7 @@ const Login: FC = () => {
           </span>
         </form>
       </div>
-      <div className={cl.login_void}>
-        <div className={cl.void_circle}></div>
-        <div className={cl.void_blur}></div>
-      </div>
+      <div className={cl.login_void}></div>
     </div>
   )
 }

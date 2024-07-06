@@ -1,7 +1,10 @@
 import { FC } from "react"
 import { useForm } from "react-hook-form"
-import { fetchRegistration } from "../../../store/slices/Auth/fetchRegistration.js"
-import { useAppDispatch } from "../../../hooks/useAppDispatch.ts"
+import { fetchRegistration } from "../../../store/slices/Auth/fetchRegistration"
+import { useAppDispatch } from "../../../hooks/useAppDispatch"
+import { Button, Input, Title } from "../../../UI/index"
+import { Link } from "react-router-dom"
+import cl from "./Registration.module.scss"
 
 interface RegistrationCredentials {
   email: string
@@ -17,7 +20,7 @@ const Registration: FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     defaultValues: {
       email: "mail1@mail.ru",
@@ -34,48 +37,57 @@ const Registration: FC = () => {
   }
 
   return (
-    <div>
-      Registration
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div style={{ display: "flex", flexDirection: "column", width: "250px", gap: "10px" }}>
-          <input
+    <div className={cl.registration}>
+      <div className={cl.form_box}>
+        <Title how="h1" size="4xl">
+          Sign Up
+        </Title>
+        <form onSubmit={handleSubmit(onSubmit)} className={cl.form}>
+          <Input
             type="email"
             placeholder="email"
             {...register("email", { required: "Укажите почту" })}
           />
-          <span>{errors.email?.message}</span>
+          <span className={cl.input_error}>{errors.email?.message}</span>
 
-          <input
+          <Input
             type="password"
             placeholder="password"
             {...register("password", { required: "Укажите пароль" })}
           />
-          <span>{errors.password?.message}</span>
+          <span className={cl.input_error}>{errors.password?.message}</span>
 
-          <input
+          <Input
             type="firstName"
             placeholder="firstName"
             {...register("firstName", { required: "Укажите имя" })}
           />
-          <span>{errors.firstName?.message}</span>
+          <span className={cl.input_error}>{errors.firstName?.message}</span>
 
-          <input
+          <Input
             type="nickname"
             placeholder="nickname"
             {...register("nickname", { required: "Укажите nickname" })}
           />
-          <span>{errors.nickname?.message}</span>
+          <span className={cl.input_error}>{errors.nickname?.message}</span>
 
-          <input
+          <Input
             type="birthday"
             placeholder="birthday"
             {...register("birthday", { required: "Укажите дату рождения" })}
           />
-          <span>{errors.birthday?.message}</span>
+          <span className={cl.input_error}>{errors.birthday?.message}</span>
 
-          <button type="submit">Register me</button>
-        </div>
-      </form>
+          <Button type="submit" variant="primary" size="lg" full disabled={!isValid}>
+            Sign Up
+          </Button>
+
+          <span>
+            Есть аккаунт? <Link to="/sign-in">Авторизоваться</Link>
+          </span>
+        </form>
+      </div>
+      <div className={cl.registration_void}></div>
     </div>
   )
 }

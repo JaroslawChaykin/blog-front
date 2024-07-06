@@ -18,7 +18,7 @@ const Header: FC = () => {
           <HeaderProfile />
         ) : (
           <span>
-            <Link to={RouterPath.LOGIN}> Sign In </Link> /
+            <Link to={RouterPath.LOGIN}> Sign In </Link>
             <Link to={RouterPath.REGISTRATION}> Sign Up </Link>
           </span>
         )}
