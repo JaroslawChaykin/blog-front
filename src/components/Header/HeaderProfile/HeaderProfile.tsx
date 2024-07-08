@@ -37,7 +37,7 @@ const HeaderProfile = () => {
         NickName
       </Button>
 
-      <div className={showProfileOptions ? cl.profile_options : cl.hidden}>
+      <div className={`${cl.profile_options} ${!showProfileOptions ? cl.hidden : ""}`}>
         <Link to={`${user?.nickname}`}>Profile</Link>
         <Link to={`${user?.nickname}/settings`}>Settings</Link>
         <Button variant="primary" full onClick={SignOutHandler}>

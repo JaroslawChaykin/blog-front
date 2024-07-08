@@ -14,7 +14,7 @@ const Header: FC = () => {
       <Link to={RouterPath.HOME}> Home </Link>
 
       <div className={cl.auth}>
-        {isAuth ? (
+        {!isAuth ? (
           <HeaderProfile />
         ) : (
           <span>

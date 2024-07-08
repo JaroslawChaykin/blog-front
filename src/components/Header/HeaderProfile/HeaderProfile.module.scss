@@ -3,21 +3,37 @@
 
   .profile_options {
     position: absolute;
+    height: 150px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    overflow: hidden;
     background: #151517;
     border: 1px solid white;
     border-radius: 8px;
     padding: 10px;
-    width: 200px;
+    min-width: 200px;
     top: 40px;
     right: 0;
+    transition:
+      opacity 100ms linear,
+      transform 100ms ease-in-out,
+      height 100ms linear,
+      visibility 100ms linear;
+
+    * {
+      transform: translateY(0px);
+      transition: transform 100ms ease-in-out;
+    }
   }
 
   .hidden {
+    visibility: hidden;
     opacity: 0;
     height: 0;
-    width: 0;
+
+    * {
+      transform: translateY(-100px);
+    }
   }
 }
