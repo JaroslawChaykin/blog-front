@@ -2,7 +2,8 @@
 
 .btn {
   display: flex;
-  align-items: center;
+  align-items: end;
+  gap: 10px;
   border-radius: $border-radius;
   cursor: pointer;
 

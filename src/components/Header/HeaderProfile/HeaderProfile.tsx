@@ -4,6 +4,8 @@ import { useAppDispatch } from "../../../hooks/useAppDispatch"
 import { getUser, signOut } from "../../../store/slices/Auth/auth"
 import { useAppSelector } from "../../../hooks/useAppSelector"
 import { Button } from "../../../UI"
+import { GiHamburgerMenu } from "react-icons/gi"
+import { setFirstLetterUpper } from "../../../utils"
 import cl from "./HeaderProfile.module.scss"
 
 const HeaderProfile = () => {
@@ -33,8 +35,13 @@ const HeaderProfile = () => {
 
   return (
     <div className={cl.profile} ref={profileOptionsRef}>
-      <Button variant="default" size="md" onClick={() => setShowProfileOptions((prev) => !prev)}>
-        NickName
+      <Button
+        rightIcon={<GiHamburgerMenu />}
+        variant="default"
+        size="md"
+        onClick={() => setShowProfileOptions((prev) => !prev)}
+      >
+        {setFirstLetterUpper(user!.nickname)}
       </Button>
 
       <div className={`${cl.profile_options} ${!showProfileOptions ? cl.hidden : ""}`}>
