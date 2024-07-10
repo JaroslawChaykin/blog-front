@@ -10,7 +10,6 @@ import Collection from "../Collection/Collection"
 const PostCard: FC<IPost> = ({
   _id,
   title,
-  text,
   viewsCount,
   tags,
   imageUrl,
