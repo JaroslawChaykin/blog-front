@@ -4,19 +4,21 @@ import { Container } from "../../UI"
 import cl from "./BasicLayout.module.scss"
 
 const BasicLayout = () => {
-  const styles = `${cl.basicLayout}`
-  const stylesHeader = `${cl.header}`
-  const stylesContent = `${cl.content}`
   return (
-    <div className={styles}>
-      <div className={stylesHeader}>
+    <div className={cl.basicLayout}>
+      <div className={cl.header}>
         <Container maxW={"lg"}>
           <Header />
         </Container>
       </div>
-      <div className={stylesContent}>
+      <div className={cl.content}>
         <Container maxW={"lg"}>
-          <Outlet />
+          <div className={cl.contentSplit}>
+            <div className={cl.leftSideBlock}>
+              <Outlet />
+            </div>
+            <div className={cl.rightSideBlock}></div>
+          </div>
         </Container>
       </div>
     </div>

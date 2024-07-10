@@ -4,5 +4,6 @@ import Title from "./Title/Title"
 import Alert from "./Alert/Alert"
 import Input from "./Input/Input"
 import Button from "./Button/Button"
+import Tag from "./Tag/Tag"
 
-export { Container, Text, Title, Alert, Input, Button }
+export { Container, Text, Title, Alert, Input, Button, Tag }

@@ -1,0 +1,41 @@
+@import "../../styles/index.scss";
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: $bg-dark-color;
+  border-radius: $border-radius;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  &.solid {
+    background: $primary-color;
+  }
+
+  &.light {
+    background: $white-color;
+  }
+
+  &.outline {
+    color: $white-color;
+    background: none;
+    border: 1px solid $primary-color;
+  }
+
+  &.sm {
+    font-size: 12px;
+    padding: 1px 8px;
+  }
+
+  &.md {
+    font-size: 16px;
+    padding: 2px 12px;
+  }
+
+  &.lg {
+    font-size: 20px;
+    padding: 4px 18px;
+  }
+}

@@ -6,6 +6,7 @@
   gap: 10px;
   border-radius: $border-radius;
   cursor: pointer;
+  height: 100%;
 
   &:disabled {
     opacity: 0.3;

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { fetchPostBuilder } from "./fetchPost"
 import { IPost, PostsAPI } from "../../../API/Posts/Posts"
 import { StatusAPI } from "../../../types/enums/status.enum.ts"
+import { RootState } from "../../store"
 
 export type PostState = {
   posts: {
@@ -30,6 +31,9 @@ export const postsSlice = createSlice({
     fetchPostBuilder(builder)
   },
 })
+
+export const getPosts = (state: RootState) => state.posts.posts.data
+export const getPostsStatus = (state: RootState) => state.posts.posts.status
 
 export const { deletePost } = postsSlice.actions
 

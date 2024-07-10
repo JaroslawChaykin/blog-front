@@ -1,23 +1,27 @@
 import { useEffect } from "react"
 import { fetchPosts } from "../../store/slices/Posts/fetchPost"
-import { Link } from "react-router-dom"
-import { deletePost } from "../../store/slices/Posts/posts"
-import { getUser } from "../../store/slices/Auth/auth"
 import { useAppDispatch } from "../../hooks/useAppDispatch"
 import { useAppSelector } from "../../hooks/useAppSelector"
 import { StatusAPI } from "../../types/enums/status.enum"
-import { Alert } from "../../UI"
+import { Alert, Button, Title } from "../../UI"
+import PostCard from "../../components/PostCard/PostCard"
+import { useNavigate } from "react-router-dom"
+import { RouterPath } from "../../router/router.constants"
+import { getPosts, getPostsStatus } from "../../store/slices/Posts/posts"
+import Collection from "../../components/Collection/Collection"
+import cl from "./Home.module.scss"
 
 const Home = () => {
   const dispatch = useAppDispatch()
-  const { posts } = useAppSelector((state) => state.posts)
-  const user = useAppSelector(getUser)
+  const navigate = useNavigate()
+  const posts = useAppSelector(getPosts)
+  const postsStatus = useAppSelector(getPostsStatus)
 
   useEffect(() => {
     dispatch(fetchPosts())
   }, [dispatch])
 
-  if (posts.status === StatusAPI.LOADING) {
+  if (postsStatus === StatusAPI.LOADING) {
     return (
       <Alert status="warning">
         <Alert.Icon />
@@ -27,7 +31,7 @@ const Home = () => {
     )
   }
 
-  if (posts.status === StatusAPI.ERROR) {
+  if (postsStatus === StatusAPI.ERROR) {
     return (
       <Alert status="error">
         <Alert.Icon />
@@ -37,35 +41,27 @@ const Home = () => {
     )
   }
 
-  if (posts.data.length === 0) {
-    return (
-      <Alert status="warning">
-        <Alert.Icon />
-        <Alert.Title size="2xl">Posts: </Alert.Title>
-        <Alert.Description size="2xl">Not found posts</Alert.Description>
-      </Alert>
-    )
-  }
-
-  const removePostHandler = (id: string) => {
-    dispatch(deletePost(id))
-  }
-
   return (
     <div>
-      {posts.data.map((post) => (
-        <div>
-          <Link to={"posts/" + post._id}>{post.title}</Link>
-          {post.user && post.user._id === user?._id ? (
-            <span>
-              <button onClick={() => removePostHandler(post._id)}>Delete Post</button>
-              <Link to={`/posts/${post._id}/edit`}>Edit Post</Link>
-            </span>
-          ) : (
-            ""
-          )}
-        </div>
-      ))}
+      <div className={cl.homeHeader}>
+        <Title size="4xl">Лента</Title>
+        <Button variant="primary" size="md" onClick={() => navigate(RouterPath.ADD_POST)}>
+          Создать пост
+        </Button>
+      </div>
+      {posts.length === 0 ? (
+        <Alert status="warning">
+          <Alert.Icon />
+          <Alert.Title size="2xl">Posts: </Alert.Title>
+          <Alert.Description size="2xl">Not found posts</Alert.Description>
+        </Alert>
+      ) : (
+        <Collection
+          orientation="vertical"
+          listOfData={posts}
+          displayData={(item) => <PostCard {...item} key={item._id} />}
+        />
+      )}
     </div>
   )
 }

@@ -9,6 +9,8 @@ export interface IPost {
   viewsCount: number
   user: IUserData
   imageUrl: string
+  createdAt: string
+  updatedAt: string
 }
 
 export type CreatePost = Omit<IPost, "viewsCount" | "user" | "_id">

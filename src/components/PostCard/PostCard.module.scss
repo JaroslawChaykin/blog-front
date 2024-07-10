@@ -1,0 +1,82 @@
+@import "../../styles/index.scss";
+
+.post {
+  margin-top: 20px;
+  background: $bg-dark-light-color;
+  border-radius: $border-radius;
+  overflow: hidden;
+
+  a {
+    color: $white-color;
+  }
+
+  &_content {
+    display: flex;
+  }
+
+  &_image {
+    max-width: 200px;
+    width: 100%;
+    overflow: hidden;
+    img {
+      display: block;
+      height: 100%;
+      transition: transform 100ms ease-in-out;
+    }
+  }
+  &:hover &_image img {
+    transform: scale(1.02);
+  }
+
+  &_info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 15px;
+
+    .date {
+      display: flex;
+      gap: 10px;
+      opacity: 0.5;
+    }
+
+    .creator {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background: $primary-color;
+        border-radius: 50%;
+        color: $bg-dark-color;
+      }
+    }
+
+    .sub_info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .tags {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .social {
+        display: flex;
+        justify-content: end;
+        gap: 20px;
+        &_item {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+      }
+    }
+  }
+}
