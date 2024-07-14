@@ -12,16 +12,33 @@
 
   &_content {
     display: flex;
+    height: 200px;
   }
 
   &_image {
-    max-width: 200px;
+    position: relative;
+    background: $primary-color;
+    max-width: 250px;
     width: 100%;
     overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 87% 100%, 0% 100%);
     img {
       display: block;
       height: 100%;
       transition: transform 100ms ease-in-out;
+    }
+
+    .post_image_person {
+      position: absolute;
+      top: 0;
+      background: $primary-color;
+      padding: 5px;
+      margin: 5px;
+      border-radius: $border-radius;
+
+      .creator {
+        color: $bg-dark-color;
+      }
     }
   }
   &:hover &_image img {
@@ -29,32 +46,16 @@
   }
 
   &_info {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    width: 100%;
+    justify-content: space-between;
     padding: 15px;
 
     .date {
       display: flex;
       gap: 10px;
       opacity: 0.5;
-    }
-
-    .creator {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      .avatar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 30px;
-        height: 30px;
-        background: $primary-color;
-        border-radius: 50%;
-        color: $bg-dark-color;
-      }
     }
 
     .sub_info {

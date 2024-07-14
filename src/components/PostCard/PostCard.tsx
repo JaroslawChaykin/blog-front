@@ -1,11 +1,12 @@
 import { FC } from "react"
 import { IPost } from "../../API/Posts/Posts"
 import { Link } from "react-router-dom"
-import { FaCalendarAlt, FaCommentAlt, FaHeart, FaPlus, FaUser } from "react-icons/fa"
+import { FaCalendarAlt, FaCommentAlt, FaHeart, FaPlus } from "react-icons/fa"
 import { IoMdEye } from "react-icons/io"
 import cl from "./PostCard.module.scss"
 import { Tag, Text, Title } from "../../UI"
 import Collection from "../Collection/Collection"
+import { MdPerson } from "react-icons/md"
 
 const PostCard: FC<IPost> = ({
   _id,
@@ -22,7 +23,15 @@ const PostCard: FC<IPost> = ({
       <Link to={`/posts/${_id}`}>
         <div className={cl.post_content}>
           <div className={cl.post_image}>
-            <img src={`http://localhost:4444/${imageUrl}`} alt={title} />
+            {imageUrl ? <img src={`http://localhost:4444/${imageUrl}`} alt={title} /> : ""}
+            <div className={cl.post_image_person}>
+              <div className={cl.creator}>
+                <Title size="md">
+                  <MdPerson />
+                  {user.nickname}
+                </Title>
+              </div>
+            </div>
           </div>
           <div className={cl.post_info}>
             <div className={cl.date}>
@@ -30,13 +39,6 @@ const PostCard: FC<IPost> = ({
               <Text>
                 {createdAt} ({updatedAt})
               </Text>
-            </div>
-
-            <div className={cl.creator}>
-              <div className={cl.avatar}>
-                {user.avatarUrl ? <img src={user.avatarUrl} alt={user.nickname} /> : <FaUser />}
-              </div>
-              <Title size="lg">{user.nickname}</Title>
             </div>
 
             <Title size="3xl">{title}</Title>
