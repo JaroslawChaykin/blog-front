@@ -24,13 +24,20 @@
     &Split {
       display: flex;
       gap: 20px;
+      width: 100%;
     }
+
     .leftSideBlock {
       width: 100%;
     }
 
+    .simplemde-editor-2-wrapper {
+      width: auto;
+    }
+
     .rightSideBlock {
-      min-width: 300px;
+      max-width: 300px;
+      width: 100%;
       border-radius: $border-radius;
       height: 400px;
       background: $bg-dark-light-color;

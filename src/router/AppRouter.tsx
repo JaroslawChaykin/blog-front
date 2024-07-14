@@ -1,9 +1,9 @@
 import { FC, lazy, Suspense, useEffect } from "react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { RouterPath } from "./router.constants"
-import BasicLayout from "../layouts/BasicLayout/BasicLayout.js"
+import BasicLayout from "../layouts/BasicLayout/BasicLayout"
 import { fetchAuthMe } from "../store/slices/Auth/fetchAuthMe"
-import AuthLayout from "../layouts/AuthLayout/AuthLayout.js"
+import AuthLayout from "../layouts/AuthLayout/AuthLayout"
 import { useAppDispatch } from "../hooks/useAppDispatch"
 
 const LazyPage = (Page: FC) => (
