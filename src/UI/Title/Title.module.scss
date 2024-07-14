@@ -1,1 +1,8 @@
 @import "../Text/Text.module.scss";
+
+.title {
+  display: flex;
+  font-weight: 700;
+  gap: 5px;
+  align-items: center;
+}

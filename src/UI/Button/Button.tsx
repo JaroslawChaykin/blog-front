@@ -33,7 +33,7 @@ const Button: FC<ButtonProps> = ({
   className,
   ...rest
 }) => {
-  const styles = `${className} ${cl.btn} ${sizeStyles[size]} ${variantStyles[variant]} ${full ? cl.full : ""}`
+  const styles = `${className || ""} ${cl.btn} ${sizeStyles[size]} ${variantStyles[variant]} ${full ? cl.full : ""}`
 
   return (
     <button className={styles} {...rest}>

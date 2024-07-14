@@ -1,12 +1,12 @@
 @import "../../styles/index.scss";
 
 .btn {
-  display: flex;
+  display: inline-flex;
+  justify-content: center;
   align-items: end;
   gap: 10px;
   border-radius: $border-radius;
   cursor: pointer;
-  height: 100%;
 
   &:disabled {
     opacity: 0.3;

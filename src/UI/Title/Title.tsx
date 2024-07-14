@@ -22,7 +22,7 @@ type TitleProps = {
 }
 
 const Title: FC<TitleProps> = ({ how = "h1", size = "sm", children }) => {
-  const styles = `head-title ${titleSizeStyles[size]}`
+  const styles = `${cl.title} ${titleSizeStyles[size]}`
 
   const How = how
 
