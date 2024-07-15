@@ -1,11 +1,12 @@
-import { Outlet, useLocation } from "react-router-dom"
+import { Outlet, useLocation, useMatch } from "react-router-dom"
 import Header from "../../components/Header/Header"
 import { Container } from "../../UI"
 import cl from "./BasicLayout.module.scss"
 
 const BasicLayout = () => {
   const location = useLocation()
-  const pathWhiteList = ["/"]
+  const matchHome = useMatch("/")
+  const pathWhiteList = [matchHome?.pathname]
 
   return (
     <div className={cl.basicLayout}>
