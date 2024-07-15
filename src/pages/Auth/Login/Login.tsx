@@ -56,7 +56,7 @@ const Login: FC = () => {
           <span className={cl.input_error}>{errors.password?.message}</span>
 
           <label>
-            <Input type="checkbox" {...register("shouldRemember")} />
+            <input type="checkbox" {...register("shouldRemember")} />
             Запомнить меня
           </label>
 

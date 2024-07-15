@@ -1,12 +1,15 @@
 import { ChangeEvent, FC, useCallback, useEffect, useMemo, useState } from "react"
 import { isAuthSelector } from "../../../store/slices/Auth/auth"
-import { Navigate, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import SimpleMdeReact from "react-simplemde-editor"
 import "easymde/dist/easymde.min.css"
-import styles from "./AddPost.module.scss"
 import { UploadAPI } from "../../../API/Upload/Upload"
 import { PostsAPI } from "../../../API/Posts/Posts"
-import { useAppSelector } from "../../../hooks/useAppSelector.ts"
+import { useAppSelector } from "../../../hooks/useAppSelector"
+import { Button, Input, Tag, Title, Text } from "../../../UI"
+import cl from "./AddPost.module.scss"
+import Collection from "../../../components/Collection/Collection"
+import { IoMdCloudUpload } from "react-icons/io"
 
 const AddPost: FC = () => {
   const navigate = useNavigate()
@@ -18,12 +21,26 @@ const AddPost: FC = () => {
 
   const [postBody, setPostBody] = useState<string>("")
   const [postImageUrl, setPostImageUrl] = useState<string>("")
-  const [postTitle, setpostTitle] = useState<string>("")
+  const [postTitle, setPostTitle] = useState<string>("")
   const [postTagInput, setPostTagInput] = useState<string>("")
   const [postTags, setPostTags] = useState<string[]>([])
 
+  const options = useMemo(
+    () => ({
+      spellChecker: false,
+      autofocus: true,
+      placeholder: "Введите текст...",
+      autosave: {
+        uniqueId: "blog-mde",
+        enabled: true,
+        delay: 1000,
+      },
+    }),
+    []
+  )
+
   if (!isAuth) {
-    return <Navigate to="/sign-in" />
+    navigate("/sign-in")
   }
 
   const postBodyHandler = useCallback((value: string) => {
@@ -45,6 +62,10 @@ const AddPost: FC = () => {
       setPostTags([...postTags, postTagInput])
       setPostTagInput("")
     }
+  }
+
+  const removeTag = (tagName: string) => {
+    setPostTags((prev) => prev.filter((item) => item !== tagName))
   }
 
   const addTagByClick = () => {
@@ -71,79 +92,87 @@ const AddPost: FC = () => {
     }
   }
 
-  const options = useMemo(
-    () => ({
-      spellChecker: false,
-      autofocus: true,
-      placeholder: "Введите текст...",
-      autosave: {
-        uniqueId: "blog-mde",
-        enabled: true,
-        delay: 1000,
-      },
-    }),
-    []
-  )
-
   useEffect(() => {
     const setCurrentPost = async () => {
       const post = await PostsAPI.getPostById(id)
 
       setPostBody(post.text)
       setPostImageUrl(post.imageUrl)
-      setpostTitle(post.title)
+      setPostTitle(post.title)
       setPostTags(post.tags)
     }
 
     if (isEditMode) {
       setCurrentPost()
     }
-  }, [id])
+  }, [isEditMode, id])
 
   return (
-    <div>
-      Add post
-      <hr />
-      <div>
-        <img src={"http://localhost:4444/" + postImageUrl} alt="image" />
-        <label>
-          <input type="file" onChange={handleChangeFile} hidden />
-          Добавить картинку
-        </label>
+    <div className={cl.create_post}>
+      <div className={cl.header_form}>
+        <Title how="h1" size="4xl">
+          {isEditMode ? "Обновление" : "Создание"}
+        </Title>
+        <Button variant="primary" size="lg" onClick={createPostHandler}>
+          {isEditMode ? "Обновить пост" : "Создать пост"}
+        </Button>
       </div>
-      <hr />
-      <div>
-        <input
-          type="text"
-          placeholder="Заголовок статьи..."
-          value={postTitle}
-          onChange={(e) => setpostTitle(e.target.value)}
-        />
 
-        {postTags.map((tag) => (
-          <span>{tag}</span>
-        ))}
+      <div className={cl.form}>
+        <div>
+          <Input
+            type="text"
+            placeholder="Название поста"
+            value={postTitle}
+            onChange={(e) => setPostTitle(e.target.value)}
+          />
+        </div>
 
-        <input
-          type="text"
-          placeholder="Добавить тэг"
-          value={postTagInput}
-          onChange={(e) => setPostTagInput(e.target.value)}
-          onKeyDown={addTag}
-        />
-        <button onClick={addTagByClick}>Add Tag</button>
+        <div>
+          <SimpleMdeReact
+            className={cl.editor}
+            value={postBody}
+            onChange={postBodyHandler}
+            placeholder="Введите текст"
+            options={options}
+          />
+        </div>
 
-        <SimpleMdeReact
-          className={styles.editor}
-          value={postBody}
-          onChange={postBodyHandler}
-          placeholder="Введите текст"
-          options={options}
-        />
-      </div>
-      <div>
-        <span>{postCreateError}</span>
-        <button onClick={createPostHandler}>{isEditMode ? "Update Post" : "Create Post"}</button>
+        <div className={cl.tag_box}>
+          <Collection
+            orientation="horizontal"
+            listOfData={postTags}
+            displayData={(tag) => (
+              <Tag size="sm" variant="light" onClick={() => removeTag(tag)}>
+                {tag}
+              </Tag>
+            )}
+          />
+
+          <div className={cl.tag_controls}>
+            <Input
+              type="text"
+              placeholder="Добавить тэг"
+              value={postTagInput}
+              onChange={(e) => setPostTagInput(e.target.value)}
+              onKeyDown={addTag}
+            />
+            <Button variant="primary" onClick={addTagByClick}>
+              Добавить
+            </Button>
+          </div>
+        </div>
+
+        <div className={cl.image_post}>
+          <img src={"http://localhost:4444/" + postImageUrl} />
+          <label>
+            <Input type="file" onChange={handleChangeFile} hidden accept=".jpg,.jpeg,.png" />
+            <Text size="4xl">
+              <IoMdCloudUpload />
+              Добавить картинку
+            </Text>
+          </label>
+        </div>
       </div>
     </div>
   )

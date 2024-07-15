@@ -1,3 +1,51 @@
-.editor {
-  width: 800px;
+@import "../../../styles/index.scss";
+
+.create_post {
+  .header_form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    background: $bg-dark-light-color;
+    border-radius: $border-radius;
+    padding: 15px;
+
+    .tag_box {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .tag_controls {
+        display: flex;
+        gap: 20px;
+      }
+    }
+
+    .image_post {
+      display: flex;
+      gap: 10px;
+
+      img {
+        max-height: 150px;
+      }
+
+      label {
+        @include flex-all-center;
+        gap: 10px;
+        width: 100%;
+        height: 150px;
+        border: 3px dashed $primary-color;
+      }
+    }
+  }
+
+  .editor {
+    background: $white-color;
+    border-radius: $border-radius;
+  }
 }

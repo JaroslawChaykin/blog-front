@@ -13,7 +13,7 @@ export interface IPost {
   updatedAt: string
 }
 
-export type CreatePost = Omit<IPost, "viewsCount" | "user" | "_id">
+export type CreatePost = Omit<IPost, "viewsCount" | "user" | "_id" | "createdAt" | "updatedAt">
 
 export type PostAPIMethods = {
   getAllPosts: () => Promise<IPost[]>
