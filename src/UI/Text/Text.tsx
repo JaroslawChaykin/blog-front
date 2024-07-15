@@ -22,7 +22,7 @@ type TextProps = {
 }
 
 const Text: FC<TextProps> = ({ size = "sm", children }) => {
-  return <p className={`${textSizeStyles[size]}`}>{children}</p>
+  return <p className={`${cl.text} ${textSizeStyles[size]}`}>{children}</p>
 }
 
 export default Text

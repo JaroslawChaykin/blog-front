@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react"
+import { FC, HTMLAttributes, ReactNode } from "react"
 import cl from "./Tag.module.scss"
 
 const variantStyles = {
@@ -17,12 +17,16 @@ type TagProps = {
   variant?: keyof typeof variantStyles
   size?: keyof typeof sizeStyles
   children: ReactNode
-}
+} & HTMLAttributes<HTMLSpanElement>
 
-const Tag: FC<TagProps> = ({ variant = "solid", size = "md", children }) => {
+const Tag: FC<TagProps> = ({ variant = "solid", size = "md", children, ...rest }) => {
   const styles = `${cl.tag} ${variantStyles[variant]} ${sizeStyles[size]}`
 
-  return <span className={styles}>{children}</span>
+  return (
+    <span className={styles} {...rest}>
+      {children}
+    </span>
+  )
 }
 
 export default Tag

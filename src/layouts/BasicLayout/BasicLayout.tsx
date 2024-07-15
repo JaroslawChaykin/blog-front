@@ -1,9 +1,12 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import Header from "../../components/Header/Header"
 import { Container } from "../../UI"
 import cl from "./BasicLayout.module.scss"
 
 const BasicLayout = () => {
+  const location = useLocation()
+  const pathWhiteList = ["/"]
+
   return (
     <div className={cl.basicLayout}>
       <div className={cl.header}>
@@ -17,7 +20,7 @@ const BasicLayout = () => {
             <div className={cl.leftSideBlock}>
               <Outlet />
             </div>
-            <div className={cl.rightSideBlock}></div>
+            {pathWhiteList.includes(location.pathname) && <div className={cl.rightSideBlock}></div>}
           </div>
         </Container>
       </div>

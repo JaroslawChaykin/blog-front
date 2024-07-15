@@ -3,10 +3,10 @@ import { IPost } from "../../API/Posts/Posts"
 import { Link } from "react-router-dom"
 import { FaCalendarAlt, FaCommentAlt, FaHeart, FaPlus } from "react-icons/fa"
 import { IoMdEye } from "react-icons/io"
-import cl from "./PostCard.module.scss"
+import { MdPerson } from "react-icons/md"
 import { Tag, Text, Title } from "../../UI"
 import Collection from "../Collection/Collection"
-import { MdPerson } from "react-icons/md"
+import cl from "./PostCard.module.scss"
 
 const PostCard: FC<IPost> = ({
   _id,
@@ -26,10 +26,10 @@ const PostCard: FC<IPost> = ({
             {imageUrl ? <img src={`http://localhost:4444/${imageUrl}`} alt={title} /> : ""}
             <div className={cl.post_image_person}>
               <div className={cl.creator}>
-                <Title size="md">
+                <Text size="md">
                   <MdPerson />
                   {user.nickname}
-                </Title>
+                </Text>
               </div>
             </div>
           </div>
