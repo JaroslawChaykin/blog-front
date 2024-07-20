@@ -36,7 +36,7 @@ const Login: FC = () => {
     <div className={cl.login}>
       <div className={cl.form_box}>
         <Title how="h1" size="4xl">
-          Sign In
+          Войти
         </Title>
         <form onSubmit={handleSubmit(onSubmit)} className={cl.form}>
           <Input

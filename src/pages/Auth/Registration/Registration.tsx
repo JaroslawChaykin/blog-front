@@ -40,7 +40,7 @@ const Registration: FC = () => {
     <div className={cl.registration}>
       <div className={cl.form_box}>
         <Title how="h1" size="4xl">
-          Sign Up
+          Регистрация
         </Title>
         <form onSubmit={handleSubmit(onSubmit)} className={cl.form}>
           <Input
