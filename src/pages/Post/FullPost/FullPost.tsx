@@ -38,7 +38,7 @@ const FullPost = () => {
 
       <h1>{data.title}</h1>
 
-      <ReactMarkdown>{data.text}</ReactMarkdown>
+      <ReactMarkdown children={data.text} />
     </div>
   )
 }

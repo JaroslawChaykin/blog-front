@@ -49,6 +49,10 @@ const routerList = createBrowserRouter([
         path: RouterPath.REGISTRATION,
         element: LazyPage(lazy(() => import("../pages/Auth/Registration/Registration"))),
       },
+      {
+        path: RouterPath.FORGOT_PASSWORD,
+        element: LazyPage(lazy(() => import("../pages/Auth/ForgotPassword/ForgotPassword"))),
+      },
     ],
   },
 ])

@@ -7,9 +7,9 @@ import { UploadAPI } from "../../../API/Upload/Upload"
 import { PostsAPI } from "../../../API/Posts/Posts"
 import { useAppSelector } from "../../../hooks/useAppSelector"
 import { Button, Input, Tag, Title, Text } from "../../../UI"
-import cl from "./AddPost.module.scss"
 import Collection from "../../../components/Collection/Collection"
 import { IoMdCloudUpload } from "react-icons/io"
+import cl from "./AddPost.module.scss"
 
 const AddPost: FC = () => {
   const navigate = useNavigate()

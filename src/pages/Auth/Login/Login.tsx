@@ -67,6 +67,9 @@ const Login: FC = () => {
           <span>
             Нет аккаунта? <Link to="/sign-up">Зарегистрироваться</Link>
           </span>
+          <span>
+            <Link to="/forgot-password">Забыли пароль?</Link>
+          </span>
         </form>
       </div>
       <div className={cl.login_void}></div>
