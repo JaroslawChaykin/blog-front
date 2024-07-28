@@ -2,14 +2,14 @@
 
 .basicLayout {
   min-height: 100vh;
-  color: #f7f7f9;
-  background: #212227;
+  color: $white-color;
+  background: $bg-dark-color;
   .header {
     background: #151517;
     padding: 10px 0;
 
     a {
-      color: #f7f7f9;
+      color: $white-color;
       border-radius: 2px;
       padding: 6px 12px;
       &:hover {
@@ -23,7 +23,7 @@
 
     &Split {
       display: flex;
-      gap: 20px;
+      gap: 40px;
       width: 100%;
     }
 

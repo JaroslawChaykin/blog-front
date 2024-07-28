@@ -16,7 +16,7 @@ const BasicLayout = () => {
         </Container>
       </div>
       <div className={cl.content}>
-        <Container maxW={"lg"}>
+        <Container maxW={"md"}>
           <div className={cl.contentSplit}>
             <div className={cl.leftSideBlock}>
               <Outlet />
