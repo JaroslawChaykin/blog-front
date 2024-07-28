@@ -1,0 +1,44 @@
+@import "../../../styles/index.scss";
+
+.fullPost {
+  background: $bg-dark-light-color;
+  border-radius: $border-radius;
+  padding: 15px;
+
+  .controlBtns {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .content {
+    margin-top: 40px;
+
+    h1 {
+      margin-top: 30px;
+      margin-bottom: 5px;
+      font-size: 20px;
+      line-height: 23px;
+      font-weight: 900;
+    }
+
+    p {
+      margin-bottom: 15px;
+      margin-top: 0;
+      font-size: 17px;
+      line-height: 23px;
+    }
+
+    ol {
+      list-style: decimal;
+      padding-left: 30px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      li {
+        margin-bottom: 5px;
+        line-height: 23px;
+      }
+    }
+  }
+}

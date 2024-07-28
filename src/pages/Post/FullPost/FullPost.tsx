@@ -1,11 +1,15 @@
 import useFetch from "../../../hooks/useFetch"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import ReactMarkdown from "react-markdown"
 import { useIsOwner } from "../../../hooks/useIsOwner"
 import { deletePost } from "../../../store/slices/Posts/posts"
 import { IPost } from "../../../API/Posts/Posts"
 import { useAppDispatch } from "../../../hooks/useAppDispatch"
 import { BASE_URL } from "../../../constants"
+import { Button, Title } from "../../../UI"
+import { FaTrash } from "react-icons/fa"
+import { RiEdit2Fill } from "react-icons/ri"
+import cl from "./FullPost.module.scss"
 
 const FullPost = () => {
   const params = useParams()
@@ -29,16 +33,27 @@ const FullPost = () => {
   }
 
   return (
-    <div>
-      <p>Full post {isOwner ? "owner" : ""}</p>
+    <div className={cl.fullPost}>
+      {isOwner ? (
+        <div className={cl.controlBtns}>
+          <Button onClick={removePostHandler} variant="danger" size="md">
+            <FaTrash />
+          </Button>
+          <Button onClick={() => navigate(`/posts/${data._id}/edit`)} variant="primary" size="md">
+            <RiEdit2Fill />
+          </Button>
+        </div>
+      ) : (
+        ""
+      )}
 
-      <span>{isOwner ? <Link to={`/posts/${data._id}/edit`}>Edit</Link> : ""}</span>
+      <Title size="4xl" how="h1">
+        {data.title}
+      </Title>
 
-      {isOwner ? <button onClick={removePostHandler}>Remove post</button> : ""}
-
-      <h1>{data.title}</h1>
-
-      <ReactMarkdown children={data.text} />
+      <div className={cl.content}>
+        <ReactMarkdown children={data.text} />
+      </div>
     </div>
   )
 }

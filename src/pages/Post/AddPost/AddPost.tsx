@@ -17,7 +17,6 @@ const AddPost: FC = () => {
   const isEditMode = Boolean(id)
 
   const isAuth = useAppSelector(isAuthSelector)
-  const [postCreateError, setPostCreateError] = useState("")
 
   const [postBody, setPostBody] = useState<string>("")
   const [postImageUrl, setPostImageUrl] = useState<string>("")
@@ -69,8 +68,10 @@ const AddPost: FC = () => {
   }
 
   const addTagByClick = () => {
-    setPostTags([...postTags, postTagInput])
-    setPostTagInput("")
+    if (postTagInput) {
+      setPostTags([...postTags, postTagInput])
+      setPostTagInput("")
+    }
   }
 
   const createPostHandler = async () => {
@@ -87,8 +88,6 @@ const AddPost: FC = () => {
 
     if (post._id) {
       navigate("/posts/" + (id || post._id))
-    } else {
-      setPostCreateError("Не удалось создать пост")
     }
   }
 
