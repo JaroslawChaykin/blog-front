@@ -11,6 +11,7 @@ const variantStyles = {
   primary: cl.primary,
   outline: cl.outline,
   default: cl.default,
+  danger: cl.danger
 }
 
 type ButtonProps = {
