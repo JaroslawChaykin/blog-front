@@ -7,17 +7,12 @@ import { MdPerson } from "react-icons/md"
 import { Tag, Text, Title } from "../../UI"
 import Collection from "../Collection/Collection"
 import cl from "./PostCard.module.scss"
+import { formattingDate } from "../../utils"
 
-const PostCard: FC<IPost> = ({
-  _id,
-  title,
-  viewsCount,
-  tags,
-  imageUrl,
-  user,
-  createdAt,
-  updatedAt,
-}) => {
+const PostCard: FC<IPost> = ({ _id, title, viewsCount, tags, imageUrl, user, createdAt }) => {
+  const { year, day, monthName, hours, minutes } = formattingDate(createdAt)
+  const formattedDate = `${monthName} ${day}, ${year} ${hours}:${minutes}`
+
   return (
     <div className={cl.post}>
       <Link to={`/posts/${_id}`}>
@@ -36,9 +31,7 @@ const PostCard: FC<IPost> = ({
           <div className={cl.post_info}>
             <div className={cl.date}>
               <FaCalendarAlt />
-              <Text>
-                {createdAt} ({updatedAt})
-              </Text>
+              <Text>{formattedDate}</Text>
             </div>
 
             <Title size="3xl">{title}</Title>
