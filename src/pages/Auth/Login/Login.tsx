@@ -34,45 +34,42 @@ const Login: FC = () => {
 
   return (
     <div className={cl.login}>
-      <div className={cl.form_box}>
-        <Title how="h1" size="4xl">
-          Войти
-        </Title>
-        <form onSubmit={handleSubmit(onSubmit)} className={cl.form}>
-          <Input
-            type="email"
-            placeholder="email"
-            {...register("email", { required: "Укажите почту" })}
-            isValid={!errors.email}
-          />
-          <span className={cl.input_error}>{errors.email?.message}</span>
+      <Title how="h1" size="4xl">
+        Войти
+      </Title>
+      <form onSubmit={handleSubmit(onSubmit)} className={cl.form}>
+        <Input
+          type="email"
+          placeholder="email"
+          {...register("email", { required: "Укажите почту" })}
+          isValid={!errors.email}
+        />
+        <span className={cl.input_error}>{errors.email?.message}</span>
 
-          <Input
-            type="password"
-            placeholder="password"
-            {...register("password", { required: "Укажите пароль" })}
-            isValid={!errors.password}
-          />
-          <span className={cl.input_error}>{errors.password?.message}</span>
+        <Input
+          type="password"
+          placeholder="password"
+          {...register("password", { required: "Укажите пароль" })}
+          isValid={!errors.password}
+        />
+        <span className={cl.input_error}>{errors.password?.message}</span>
 
-          <label>
-            <input type="checkbox" {...register("shouldRemember")} />
-            Запомнить меня
-          </label>
+        <label>
+          <input type="checkbox" {...register("shouldRemember")} />
+          Запомнить меня
+        </label>
 
-          <Button type="submit" variant="primary" size="lg" full disabled={!isValid}>
-            Login
-          </Button>
+        <Button type="submit" variant="primary" size="lg" full disabled={!isValid}>
+          Login
+        </Button>
 
-          <span>
-            Нет аккаунта? <Link to="/sign-up">Зарегистрироваться</Link>
-          </span>
-          <span>
-            <Link to="/forgot-password">Забыли пароль?</Link>
-          </span>
-        </form>
-      </div>
-      <div className={cl.login_void}></div>
+        <span>
+          Нет аккаунта? <Link to="/sign-up">Зарегистрироваться</Link>
+        </span>
+        <span>
+          <Link to="/forgot-password">Забыли пароль?</Link>
+        </span>
+      </form>
     </div>
   )
 }

@@ -38,56 +38,53 @@ const Registration: FC = () => {
 
   return (
     <div className={cl.registration}>
-      <div className={cl.form_box}>
-        <Title how="h1" size="4xl">
-          Регистрация
-        </Title>
-        <form onSubmit={handleSubmit(onSubmit)} className={cl.form}>
-          <Input
-            type="email"
-            placeholder="email"
-            {...register("email", { required: "Укажите почту" })}
-          />
-          <span className={cl.input_error}>{errors.email?.message}</span>
+      <Title how="h1" size="4xl">
+        Регистрация
+      </Title>
+      <form onSubmit={handleSubmit(onSubmit)} className={cl.form}>
+        <Input
+          type="email"
+          placeholder="email"
+          {...register("email", { required: "Укажите почту" })}
+        />
+        <span className={cl.input_error}>{errors.email?.message}</span>
 
-          <Input
-            type="password"
-            placeholder="password"
-            {...register("password", { required: "Укажите пароль" })}
-          />
-          <span className={cl.input_error}>{errors.password?.message}</span>
+        <Input
+          type="password"
+          placeholder="password"
+          {...register("password", { required: "Укажите пароль" })}
+        />
+        <span className={cl.input_error}>{errors.password?.message}</span>
 
-          <Input
-            type="firstName"
-            placeholder="firstName"
-            {...register("firstName", { required: "Укажите имя" })}
-          />
-          <span className={cl.input_error}>{errors.firstName?.message}</span>
+        <Input
+          type="firstName"
+          placeholder="firstName"
+          {...register("firstName", { required: "Укажите имя" })}
+        />
+        <span className={cl.input_error}>{errors.firstName?.message}</span>
 
-          <Input
-            type="nickname"
-            placeholder="nickname"
-            {...register("nickname", { required: "Укажите nickname" })}
-          />
-          <span className={cl.input_error}>{errors.nickname?.message}</span>
+        <Input
+          type="nickname"
+          placeholder="nickname"
+          {...register("nickname", { required: "Укажите nickname" })}
+        />
+        <span className={cl.input_error}>{errors.nickname?.message}</span>
 
-          <Input
-            type="birthday"
-            placeholder="birthday"
-            {...register("birthday", { required: "Укажите дату рождения" })}
-          />
-          <span className={cl.input_error}>{errors.birthday?.message}</span>
+        <Input
+          type="birthday"
+          placeholder="birthday"
+          {...register("birthday", { required: "Укажите дату рождения" })}
+        />
+        <span className={cl.input_error}>{errors.birthday?.message}</span>
 
-          <Button type="submit" variant="primary" size="lg" full disabled={!isValid}>
-            Sign Up
-          </Button>
+        <Button type="submit" variant="primary" size="lg" full disabled={!isValid}>
+          Sign Up
+        </Button>
 
-          <span>
-            Есть аккаунт? <Link to="/sign-in">Авторизоваться</Link>
-          </span>
-        </form>
-      </div>
-      <div className={cl.registration_void}></div>
+        <span>
+          Есть аккаунт? <Link to="/sign-in">Авторизоваться</Link>
+        </span>
+      </form>
     </div>
   )
 }

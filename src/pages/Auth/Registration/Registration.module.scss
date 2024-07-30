@@ -1,47 +1,23 @@
 @import "../../../styles/index.scss";
 
 .registration {
-  display: flex;
-  .form_box {
-    @include flex-V-all-center;
-    gap: 40px;
-    width: 50%;
+  @include flex-V-all-center;
+  width: 100%;
+  height: 100%;
+  gap: 40px;
 
-    &::before {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.08;
-      background-image: url("../../../assets/floral-pattern2.png");
-      mask-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(1, 2, 1, 0.62) 33%, rgba(1, 2, 1, 0.16));
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+    width: 100%;
+    padding: 15px;
+    z-index: 2;
+
+    .input_error {
+      font-size: 14px;
+      color: $danger-color;
     }
-
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      max-width: 400px;
-      width: 100%;
-      padding: 15px;
-      z-index: 2;
-
-      .input_error {
-        font-size: 14px;
-        color: $danger-color;
-      }
-    }
-  }
-
-  &_void {
-    @include flex-all-center;
-    background: url("../../../assets/auth-bg.jpg") no-repeat;
-    background-size: 100%;
-    background-position: 0 20%;
-    position: relative;
-    width: 50%;
-    height: 100vh;
   }
 }

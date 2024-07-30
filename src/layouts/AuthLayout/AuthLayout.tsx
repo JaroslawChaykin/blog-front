@@ -14,9 +14,10 @@ const AuthLayout: FC = () => {
 
   return (
     <div className={cl.authLayout}>
-      <div className={cl.form}>
+      <div className={cl.box}>
         <Outlet />
       </div>
+      <div className={cl.void}></div>
     </div>
   )
 }
