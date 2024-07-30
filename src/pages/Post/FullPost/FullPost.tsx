@@ -21,7 +21,7 @@ const FullPost = () => {
   const { data, loading, error } = useFetch<IPost>(`${BASE_URL}/posts/${params.id}`)
   const isOwner = useIsOwner(data?.user?._id || "")
   const { year, day, monthName, hours, minutes } = formattingDate(data?.createdAt)
-  const formattedDate = `${monthName} ${day}, ${year} ${hours}:${minutes}`
+  const formattedDate = `${hours}:${minutes} ·  ${day} ${monthName} ${year}`
 
   if (error) {
     return <p>Error</p>

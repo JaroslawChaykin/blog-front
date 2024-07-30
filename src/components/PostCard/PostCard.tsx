@@ -11,7 +11,7 @@ import { formattingDate } from "../../utils"
 
 const PostCard: FC<IPost> = ({ _id, title, viewsCount, tags, imageUrl, user, createdAt }) => {
   const { year, day, monthName, hours, minutes } = formattingDate(createdAt)
-  const formattedDate = `${monthName} ${day}, ${year} ${hours}:${minutes}`
+  const formattedDate = `${hours}:${minutes} · ${day} ${monthName} ${year}`
 
   return (
     <div className={cl.post}>
