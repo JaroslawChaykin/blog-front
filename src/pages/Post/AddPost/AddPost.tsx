@@ -1,5 +1,5 @@
-import { ChangeEvent, FC, useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react"
-import { isAuthSelector } from "../../../store/slices/Auth/auth"
+import { ChangeEvent, FC, useCallback, useLayoutEffect, useMemo, useState } from "react"
+import { getUser, isAuthSelector } from "../../../store/slices/Auth/auth"
 import { useNavigate, useParams } from "react-router-dom"
 import SimpleMdeReact from "react-simplemde-editor"
 import "easymde/dist/easymde.min.css"
@@ -17,6 +17,7 @@ const AddPost: FC = () => {
   const isEditMode = Boolean(id)
 
   const isAuth = useAppSelector(isAuthSelector)
+  const currentUser = useAppSelector(getUser)
 
   const [postBody, setPostBody] = useState<string>("")
   const [postImageUrl, setPostImageUrl] = useState<string>("")
@@ -88,14 +89,12 @@ const AddPost: FC = () => {
   }
 
   useLayoutEffect(() => {
-    if (!isAuth) {
-      navigate("/sign-in")
-    }
-  })
-
-  useEffect(() => {
     const setCurrentPost = async () => {
       const post = await PostsAPI.getPostById(id)
+
+      if (post.user._id !== currentUser?._id) {
+        navigate("/")
+      }
 
       setPostBody(post.text)
       setPostImageUrl(post.imageUrl)
@@ -106,7 +105,11 @@ const AddPost: FC = () => {
     if (isEditMode) {
       setCurrentPost()
     }
-  }, [isEditMode, id])
+
+    if (!isAuth) {
+      navigate("/sign-in")
+    }
+  }, [isEditMode, id, currentUser, isAuth, navigate])
 
   return (
     <div className={cl.create_post}>
