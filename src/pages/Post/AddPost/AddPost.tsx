@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useCallback, useEffect, useMemo, useState } from "react"
+import { ChangeEvent, FC, useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react"
 import { isAuthSelector } from "../../../store/slices/Auth/auth"
 import { useNavigate, useParams } from "react-router-dom"
 import SimpleMdeReact from "react-simplemde-editor"
@@ -37,10 +37,6 @@ const AddPost: FC = () => {
     }),
     []
   )
-
-  if (!isAuth) {
-    navigate("/sign-in")
-  }
 
   const postBodyHandler = useCallback((value: string) => {
     setPostBody(value)
@@ -90,6 +86,12 @@ const AddPost: FC = () => {
       navigate("/posts/" + (id || post._id))
     }
   }
+
+  useLayoutEffect(() => {
+    if (!isAuth) {
+      navigate("/sign-in")
+    }
+  })
 
   useEffect(() => {
     const setCurrentPost = async () => {
