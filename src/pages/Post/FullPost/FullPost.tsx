@@ -60,10 +60,10 @@ const FullPost = () => {
 
         {isOwner ? (
           <div className={cl.controlBtns}>
-            <Button onClick={removePostHandler} variant="danger" size="md">
+            <Button onClick={removePostHandler} variant="danger" size="lg">
               <FaTrash />
             </Button>
-            <Button onClick={() => navigate(`/posts/${data._id}/edit`)} variant="primary" size="md">
+            <Button onClick={() => navigate(`/posts/${data._id}/edit`)} variant="primary" size="lg">
               <RiEdit2Fill />
             </Button>
           </div>

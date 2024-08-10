@@ -172,16 +172,24 @@ const AddPost: FC = () => {
         </div>
 
         <div className={cl.image_post}>
-          <div onClick={removeImage} className={cl.image}>
-            {postImageUrl ? <img src={"http://localhost:4444/" + postImageUrl} /> : ""}
-          </div>
-          <label>
-            <Input type="file" onChange={handleChangeFile} hidden accept=".jpg,.jpeg,.png" />
-            <Text size="4xl">
-              <IoMdCloudUpload />
-              Добавить картинку
-            </Text>
-          </label>
+          {postImageUrl ? (
+            <>
+              <div onClick={removeImage} className={cl.image}>
+                <img src={"http://localhost:4444/" + postImageUrl} />
+              </div>
+              <Button variant="danger" size="md" full onClick={removeImage}>
+                Удалить картинку
+              </Button>
+            </>
+          ) : (
+            <label>
+              <Input type="file" onChange={handleChangeFile} hidden accept=".jpg,.jpeg,.png" />
+              <Text size="4xl">
+                <IoMdCloudUpload />
+                Добавить картинку
+              </Text>
+            </label>
+          )}
         </div>
       </div>
     </div>
