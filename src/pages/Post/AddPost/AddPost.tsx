@@ -54,7 +54,7 @@ const AddPost: FC = () => {
   }
 
   const addTag = (e: KeyboardEvent) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && postTagInput) {
       setPostTags([...postTags, postTagInput])
       setPostTagInput("")
     }
@@ -86,6 +86,10 @@ const AddPost: FC = () => {
     if (post._id) {
       navigate("/posts/" + (id || post._id))
     }
+  }
+
+  const removeImage = () => {
+    setPostImageUrl("")
   }
 
   useLayoutEffect(() => {
@@ -161,14 +165,16 @@ const AddPost: FC = () => {
               onChange={(e) => setPostTagInput(e.target.value)}
               onKeyDown={addTag}
             />
-            <Button variant="primary" onClick={addTagByClick}>
+            <Button variant="primary" size="lg" onClick={addTagByClick}>
               Добавить
             </Button>
           </div>
         </div>
 
         <div className={cl.image_post}>
-          <img src={"http://localhost:4444/" + postImageUrl} />
+          <div onClick={removeImage} className={cl.image}>
+            {postImageUrl ? <img src={"http://localhost:4444/" + postImageUrl} /> : ""}
+          </div>
           <label>
             <Input type="file" onChange={handleChangeFile} hidden accept=".jpg,.jpeg,.png" />
             <Text size="4xl">

@@ -31,9 +31,11 @@
       width: 100%;
       gap: 10px;
 
-      img {
-        max-height: 150px;
-        max-width: 500px;
+      .image {
+        img {
+          max-height: 150px;
+          max-width: 500px;
+        }
       }
 
       label {

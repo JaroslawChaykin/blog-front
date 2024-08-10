@@ -22,7 +22,7 @@ const AuthLayout: FC = () => {
       <div className={cl.void}></div>
       <div className={cl.exit}>
         <Button
-          size="md"
+          size="lg"
           variant="primary"
           onClick={() => navigate("/")}
           leftIcon={<MdOutlineArrowBackIos />}

@@ -78,7 +78,7 @@ const FullPost = () => {
 
         <Collection
           orientation="horizontal"
-          listOfData={data.tags.slice(0, 2)}
+          listOfData={data.tags}
           displayData={(item, index) => (
             <Tag variant="solid" size="sm" key={index}>
               {item}
