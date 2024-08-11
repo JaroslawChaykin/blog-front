@@ -47,7 +47,7 @@ const PostCard: FC<IPost> = ({ _id, title, viewsCount, tags, imageUrl, user, cre
                     </Tag>
                   )}
                 />
-                {tags.length - 2 ? (
+                {tags.length - 2 > 0 ? (
                   <Tag size="sm" variant="outline">
                     <FaPlus />
                     {tags.length - 2}
