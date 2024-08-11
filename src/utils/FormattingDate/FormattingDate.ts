@@ -2,8 +2,8 @@ type Dates = {
   day: number
   month: number
   year: number
-  hours: number
-  minutes: number
+  hours: string
+  minutes: string
   monthName: string
 }
 
@@ -35,8 +35,8 @@ export const formattingDate = (date: string = ""): Dates => {
     day,
     month,
     year,
-    hours,
-    minutes,
+    hours: String(hours).length === 1 ? `0${hours}` : `${hours}`,
+    minutes: String(minutes).length === 1 ? `0${minutes}` : `${minutes}`,
     monthName: monthList[month],
   }
 }
