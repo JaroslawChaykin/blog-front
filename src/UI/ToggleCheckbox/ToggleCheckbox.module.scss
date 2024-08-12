@@ -3,8 +3,21 @@
 .toggle {
   position: relative;
   display: inline-block;
-  width: 32px;
-  height: 20px;
+
+  &.sm {
+    width: 34px;
+    height: 22px;
+  }
+
+  &.md {
+    width: 50px;
+    height: 30px;
+  }
+
+  &.lg {
+    width: 68px;
+    height: 38px;
+  }
 
   &_checkbox {
     opacity: 0;
@@ -22,13 +35,26 @@
     background-color: $white-color;
     transition: 0.4s;
     border-radius: 100px;
+
+    &.sm:before {
+      height: 14px;
+      width: 14px;
+    }
+
+    &.md:before {
+      width: 22px;
+      height: 22px;
+    }
+
+    &.lg:before {
+      width: 30px;
+      height: 30px;
+    }
   }
 
   &_slider:before {
     position: absolute;
     content: "";
-    height: 12px;
-    width: 12px;
     left: 4px;
     bottom: 4px;
     background-color: $bg-dark-color;
@@ -44,7 +70,15 @@
     box-shadow: 0 0 1px #2196f3;
   }
 
-  input:checked + &_slider:before {
+  input:checked + &_slider.sm:before {
     transform: translateX(12px);
+  }
+
+  input:checked + &_slider.md:before {
+    transform: translateX(20px);
+  }
+
+  input:checked + &_slider.lg:before {
+    transform: translateX(30px);
   }
 }

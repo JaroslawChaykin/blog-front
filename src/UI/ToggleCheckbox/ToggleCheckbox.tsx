@@ -1,16 +1,26 @@
 import { FC } from "react"
 import cl from "./ToggleCheckbox.module.scss"
 
-type ToggleCheckboxProps = {
-    checked: boolean,
-    onClick: () => void
+const toggleCheckboxSizes = {
+  sm: cl.sm,
+  md: cl.md,
+  lg: cl.lg,
 }
 
-const ToggleCheckbox: FC<ToggleCheckboxProps> = ({ checked, onClick }) => {
+type ToggleCheckboxProps = {
+  size?: keyof typeof toggleCheckboxSizes
+  checked: boolean
+  onClick: () => void
+}
+
+const ToggleCheckbox: FC<ToggleCheckboxProps> = ({ size = "lg", checked, onClick }) => {
+  const stylesToggle = `${cl.toggle} ${toggleCheckboxSizes[size]}`
+  const stylesSlider = `${cl.toggle_slider} ${toggleCheckboxSizes[size]}`
+
   return (
-    <label className={cl.toggle}>
+    <label className={stylesToggle}>
       <input className={cl.toggle_checkbox} type="checkbox" checked={checked} onClick={onClick} />
-      <span className={cl.toggle_slider}></span>
+      <span className={stylesSlider}></span>
     </label>
   )
 }
