@@ -1,5 +1,13 @@
+import { Title } from "../../UI"
+
 const Profile = () => {
-  return <div>Profile</div>
+  return (
+    <div>
+      <Title how="h1" size="4xl">
+        Profile
+      </Title>
+    </div>
+  )
 }
 
 export default Profile
