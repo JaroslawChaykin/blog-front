@@ -10,16 +10,22 @@ const toggleCheckboxSizes = {
 type ToggleCheckboxProps = {
   size?: keyof typeof toggleCheckboxSizes
   checked: boolean
-  onClick: () => void
+  onChange?: () => void
 }
 
-const ToggleCheckbox: FC<ToggleCheckboxProps> = ({ size = "lg", checked, onClick }) => {
+const ToggleCheckbox: FC<ToggleCheckboxProps> = ({ size = "lg", checked, onChange }) => {
   const stylesToggle = `${cl.toggle} ${toggleCheckboxSizes[size]}`
   const stylesSlider = `${cl.toggle_slider} ${toggleCheckboxSizes[size]}`
 
   return (
     <label className={stylesToggle}>
-      <input className={cl.toggle_checkbox} type="checkbox" checked={checked} onClick={onClick} />
+      <input
+        className={cl.toggle_checkbox}
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+        readOnly={onChange ? false : true}
+      />
       <span className={stylesSlider}></span>
     </label>
   )
