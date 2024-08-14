@@ -45,10 +45,11 @@ const HeaderProfile = () => {
       </Button>
 
       <div className={`${cl.profile_options} ${!showProfileOptions ? cl.hidden : ""}`}>
-        <Link to={`${user?.nickname}`}>Profile</Link>
-        <Link to={`${user?.nickname}/settings`}>Settings</Link>
+        <Link to={`${user?.nickname}`}>Профиль</Link>
+        <Link to={`${user?.nickname}/posts`}>Ваши посты</Link>
+        <Link to={`${user?.nickname}/settings`}>Настройки</Link>
         <Button variant="primary" full onClick={SignOutHandler}>
-          Sign Out
+          Выйти
         </Button>
       </div>
     </div>

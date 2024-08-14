@@ -36,6 +36,10 @@ const routerList = createBrowserRouter([
         path: RouterPath.PROFILE,
         element: LazyPage(lazy(() => import("../pages/Profile/Profile"))),
       },
+      {
+        path: RouterPath.PROFILE_POSTS,
+        element: LazyPage(lazy(() => import("../pages/Profile/ProfilePosts/ProfilePosts"))),
+      },
     ],
   },
   {
