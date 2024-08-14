@@ -7,13 +7,13 @@ const orientationStyles = {
 }
 
 type CollectionProps<T> = {
-  orientation: keyof typeof orientationStyles
+  orientation?: keyof typeof orientationStyles
   displayData: (item: T, index: number) => ReactNode
   listOfData: T[]
 }
 
 const Collection = <T extends object | string | number>({
-  orientation,
+  orientation = "vertical",
   displayData,
   listOfData,
 }: CollectionProps<T>) => {
