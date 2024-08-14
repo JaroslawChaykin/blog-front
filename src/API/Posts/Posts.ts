@@ -11,6 +11,7 @@ export interface IPost {
   imageUrl: string
   createdAt: string
   updatedAt: string
+  isPublic: boolean
 }
 
 export type CreatePost = Omit<IPost, "viewsCount" | "user" | "_id" | "createdAt" | "updatedAt">
@@ -21,6 +22,10 @@ export type PostAPIMethods = {
   createPost: (data: CreatePost) => Promise<IPost>
   updatePost: (id: string, data: CreatePost) => Promise<IPost>
   deletePost: (id: string) => void
+  updateStatusPublicPost: (
+    id: string,
+    data: { isPublic: boolean }
+  ) => Promise<Pick<IPost, "isPublic">>
 }
 
 export const PostsAPI: PostAPIMethods = {
@@ -46,5 +51,10 @@ export const PostsAPI: PostAPIMethods = {
   },
   deletePost: async (id) => {
     await axios.delete("/posts/" + id)
+  },
+  updateStatusPublicPost: async (id, data) => {
+    const { data: post } = await axios.patch(`/posts/${id}/public`, data)
+
+    return post
   },
 }
