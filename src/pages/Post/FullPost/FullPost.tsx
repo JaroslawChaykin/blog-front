@@ -23,11 +23,15 @@ const FullPost = () => {
   const { year, day, monthName, hours, minutes } = formattingDate(data?.createdAt)
   const formattedDate = `${hours}:${minutes} ·  ${day} ${monthName} ${year}`
 
+  if (!data) {
+    return <p>Пост не найден</p>
+  }
+
   if (error) {
     return <p>Error</p>
   }
 
-  if (loading || !data) {
+  if (loading) {
     return <p>Loading...</p>
   }
 

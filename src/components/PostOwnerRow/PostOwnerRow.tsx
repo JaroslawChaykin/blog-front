@@ -2,6 +2,7 @@ import { FC, ReactNode } from "react"
 import { PostControllerProps } from "../PostController/PostController"
 import { IoMdEye } from "react-icons/io"
 import { Text } from "../../UI"
+import { Link } from "react-router-dom"
 import cl from "./PostOwnerRow.module.scss"
 
 interface PostOwnerRowProps extends PostControllerProps {
@@ -9,18 +10,19 @@ interface PostOwnerRowProps extends PostControllerProps {
 }
 
 const PostOwnerRow: FC<PostOwnerRowProps> = ({ post, controllers }) => {
+  const PostOwnerLinked = post.isPublic ? Link : "div"
   return (
     <div className={cl.post_row}>
-      <div>{post.title}</div>
-      <div className={cl.post_row_right}>
+      <PostOwnerLinked to={`/posts/${post._id}/`} className={cl.title}>
+        {post.title}
         <div>
           <Text>
             <IoMdEye />
             {post.viewsCount}
           </Text>
         </div>
-        <div className={cl.controllers}>{controllers}</div>
-      </div>
+      </PostOwnerLinked>
+      <div className={cl.controllers}>{controllers}</div>
     </div>
   )
 }

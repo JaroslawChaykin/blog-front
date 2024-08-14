@@ -14,10 +14,14 @@ export interface IPost {
   isPublic: boolean
 }
 
-export type CreatePost = Omit<IPost, "viewsCount" | "user" | "_id" | "createdAt" | "updatedAt">
+export type CreatePost = Omit<
+  IPost,
+  "viewsCount" | "user" | "_id" | "createdAt" | "updatedAt" | "isPublic"
+>
 
 export type PostAPIMethods = {
   getAllPosts: () => Promise<IPost[]>
+  getOwnerPosts: () => Promise<IPost[]>
   getPostById: (id: string) => Promise<IPost>
   createPost: (data: CreatePost) => Promise<IPost>
   updatePost: (id: string, data: CreatePost) => Promise<IPost>
@@ -31,6 +35,11 @@ export type PostAPIMethods = {
 export const PostsAPI: PostAPIMethods = {
   getAllPosts: async () => {
     const { data } = await axios.get("/posts")
+
+    return data
+  },
+  getOwnerPosts: async () => {
+    const { data } = await axios.get("/posts/owner/get")
 
     return data
   },
