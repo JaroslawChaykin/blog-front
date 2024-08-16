@@ -1,10 +1,12 @@
-import { FC, lazy, Suspense, useEffect } from "react"
+import { FC, lazy, Suspense, useLayoutEffect } from "react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { RouterPath } from "./router.constants"
 import BasicLayout from "../layouts/BasicLayout/BasicLayout"
 import { fetchAuthMe } from "../store/slices/Auth/fetchAuthMe"
 import AuthLayout from "../layouts/AuthLayout/AuthLayout"
 import { useAppDispatch } from "../hooks/useAppDispatch"
+import { useAppSelector } from "../hooks/useAppSelector"
+import { StatusAPI } from "../types/enums/status.enum"
 
 const LazyPage = (Page: FC) => (
   <Suspense fallback={<div>loading...</div>}>
@@ -63,10 +65,15 @@ const routerList = createBrowserRouter([
 
 const AppRouter = () => {
   const dispatch = useAppDispatch()
+  const statusAuth = useAppSelector((store) => store.auth.status)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     dispatch(fetchAuthMe())
   }, [dispatch])
+
+  if (statusAuth === StatusAPI.LOADING) {
+    return <h1>Loading...</h1>
+  }
 
   return <RouterProvider router={routerList} />
 }
