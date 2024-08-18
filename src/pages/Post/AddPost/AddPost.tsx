@@ -96,6 +96,11 @@ const AddPost: FC = () => {
     const setCurrentPost = async () => {
       const post = await PostsAPI.getPostById(id)
 
+      if (post.message) {
+        navigate("/")
+        return
+      }
+
       if (post.user._id !== currentUser?._id) {
         navigate("/")
       }

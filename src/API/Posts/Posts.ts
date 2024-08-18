@@ -1,7 +1,11 @@
 import axios from "../API"
 import { IUserData } from "../Auth/Auth"
 
-export interface IPost {
+interface PostError {
+  message: string
+}
+
+export interface IPost extends PostError {
   _id: string
   title: string
   text: string
@@ -16,7 +20,7 @@ export interface IPost {
 
 export type CreatePost = Omit<
   IPost,
-  "viewsCount" | "user" | "_id" | "createdAt" | "updatedAt" | "isPublic"
+  "viewsCount" | "user" | "_id" | "createdAt" | "updatedAt" | "isPublic" | "message"
 >
 
 export type PostAPIMethods = {
@@ -44,9 +48,9 @@ export const PostsAPI: PostAPIMethods = {
     return data
   },
   getPostById: async (id) => {
-    const { data } = await axios.get("/posts/" + id)
+    const data = await axios.get("/posts/" + id).catch((err) => err.response)
 
-    return data
+    return data.data
   },
   createPost: async (data) => {
     const { data: post } = await axios.post("/posts", data)
