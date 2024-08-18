@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useEffect } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
 import { isAuthSelector } from "../../store/slices/Auth/auth"
 import { useAppSelector } from "../../hooks/useAppSelector"
@@ -10,9 +10,11 @@ const AuthLayout: FC = () => {
   const isAuth = useAppSelector(isAuthSelector)
   const navigate = useNavigate()
 
-  if (isAuth) {
-    navigate("/")
-  }
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/")
+    }
+  }, [navigate, isAuth])
 
   return (
     <div className={cl.authLayout}>
