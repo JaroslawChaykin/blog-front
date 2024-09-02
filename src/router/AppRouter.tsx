@@ -7,9 +7,10 @@ import AuthLayout from "../layouts/AuthLayout/AuthLayout"
 import { useAppDispatch } from "../hooks/useAppDispatch"
 import { useAppSelector } from "../hooks/useAppSelector"
 import { StatusAPI } from "../types/enums/status.enum"
+import { Loader } from "../UI"
 
 const LazyPage = (Page: FC) => (
-  <Suspense fallback={<div>loading...</div>}>
+  <Suspense fallback={<Loader center size={100} />}>
     <Page />
   </Suspense>
 )
