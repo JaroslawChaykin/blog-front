@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import axios from "axios"
+import axios from "../API/API"
 
 function useFetch<T>(url: string): { data: T | null; loading: boolean; error: string } {
   const [data, setData] = useState(null)
@@ -11,10 +11,8 @@ function useFetch<T>(url: string): { data: T | null; loading: boolean; error: st
     setData(null)
     setError("")
 
-    const source = axios.CancelToken.source()
-
     axios
-      .get(url, { cancelToken: source.token })
+      .get(url)
       .then((res) => {
         setError("")
         setData(res.data)
@@ -26,10 +24,6 @@ function useFetch<T>(url: string): { data: T | null; loading: boolean; error: st
         setLoading(false)
         setError("")
       })
-
-    return () => {
-      source.cancel()
-    }
   }, [url])
 
   return { data, loading, error }

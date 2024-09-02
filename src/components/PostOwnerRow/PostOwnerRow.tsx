@@ -10,10 +10,9 @@ interface PostOwnerRowProps extends PostControllerProps {
 }
 
 const PostOwnerRow: FC<PostOwnerRowProps> = ({ post, controllers }) => {
-  const PostOwnerLinked = post.isPublic ? Link : "div"
   return (
     <div className={cl.post_row}>
-      <PostOwnerLinked to={`/posts/${post._id}/`} className={cl.title}>
+      <Link to={`/posts/${post._id}/`} className={cl.title}>
         {post.title}
         <div>
           <Text>
@@ -21,7 +20,7 @@ const PostOwnerRow: FC<PostOwnerRowProps> = ({ post, controllers }) => {
             {post.viewsCount}
           </Text>
         </div>
-      </PostOwnerLinked>
+      </Link>
       <div className={cl.controllers}>{controllers}</div>
     </div>
   )
