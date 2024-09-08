@@ -18,11 +18,12 @@ export type textSizes = keyof typeof textSizeStyles
 
 type TextProps = {
   size?: textSizes
+  bold?: boolean
   children: ReactNode
 }
 
-const Text: FC<TextProps> = ({ size = "sm", children }) => {
-  return <p className={`${cl.text} ${textSizeStyles[size]}`}>{children}</p>
+const Text: FC<TextProps> = ({ size = "sm", bold = false, children }) => {
+  return <p className={`${cl.text} ${textSizeStyles[size]} ${bold && cl.bold}`}>{children}</p>
 }
 
 export default Text
