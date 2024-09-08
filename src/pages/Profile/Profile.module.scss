@@ -1,0 +1,58 @@
+@import "../../styles/index.scss";
+
+.profile {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 1px;
+
+  > div:nth-child(odd) {
+    border-radius: $border-radius;
+  }
+
+  &_author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    background: linear-gradient(135deg, $primary-color, rgb(0, 62, 124));
+
+    .author_avatar {
+      width: 100px;
+      height: 100px;
+      background: black;
+      border-radius: 50%;
+      border: 2px solid $white-color;
+    }
+
+    .author_names {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+
+      > :nth-child(2) {
+        opacity: 0.5;
+      }
+    }
+
+    .author_career {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px;
+
+      .career_item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        > :nth-child(2) {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
